@@ -8,7 +8,6 @@
 3. 第三个，就是我们知道的`三个代表`
 
 
-
 ## 一点成绩
 
 * 军队一律不得经商
@@ -26,8 +25,8 @@
 ```
 struct Parser<Result> {
 
-typealias Stream = Substring
-let parse: (Stream) -> (Result, Stream)?
+    typealias Stream = Substring
+    let parse: (Stream) -> (Result, Stream)?
 }
 
 /// atxHeading1 = "#", space, textualContent, atxClosingSequence;
@@ -42,16 +41,15 @@ let atxHeading1 = BlockNode.h1 <^> (string("#") *> space *> textualContent <* sp
 ## 嵌套
 
 1. 小明的`爷爷`
-* 小明的`爸爸`
-+ 这是`小明`
+    * 小明的`爸爸`
+        + 这是`小明`
 
-```javascript
-// 小明是傻逼，只会 JS
-console.log("小明的爸爸是傻逼")
-```
+        ```javascript
+        // 小明是傻逼，只会 JS
+        console.log("小明的爸爸是傻逼")
+        ```
 2. `创世`节点，没有爸爸
 3. 学 `PHP` 并不能救中国
-```php
-echo "PHP 是世界上最好的语言"
-
-```
+    ```php
+    echo "PHP 是世界上最好的语言"
+    ```

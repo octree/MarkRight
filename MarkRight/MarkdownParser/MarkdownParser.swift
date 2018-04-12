@@ -43,6 +43,18 @@ struct MarkdownParser {
                     <style type = "text/css">
                     \(theme)
                     </style>
+                    <script>
+            
+                    window.oct_scroll = function(r) {
+                        let bodyH = document.body.scrollHeight
+                        let screenH = screen.height
+                        let outH = bodyH - screenH
+                        if (outH < 0) {
+                            outH = 0
+                        }
+                        document.body.scrollTop = r * outH
+                    }
+                    </script>
                 </head>
                 <body>
                     \(html)

@@ -16,6 +16,11 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         return scrollView.documentView as! NSTextView
     }
     
+    var testText: String {
+        
+        let path = Bundle.main.path(forResource: "Test", ofType: "md")!
+        return try! String(contentsOfFile: path)
+    }
  
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var scrollView: NSScrollView!
@@ -27,21 +32,35 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(white: 0.8, alpha: 1).cgColor
         configTextView()
-        
+        configScrollView()
         webView.navigationDelegate = self
 
-        if let html = MarkdownParser.toHTML("") {
+        let text = testText
+        textView.string = text
+        if let html = MarkdownParser.toHTML(text) {
             self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
         }
+    }
+    
+    func configScrollView() {
+        
+        scrollView.contentView.postsBoundsChangedNotifications = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.boundsDidChange), name: NSView.boundsDidChangeNotification, object: nil)
+    }
+    
+    @objc func boundsDidChange() {
+        
+        let height = scrollView.documentView!.frame.size.height
+        let viewHeight = scrollView.frame.size.height
+        var outH = height - viewHeight
+        print(outH)
+        if outH < 0 {
+            outH = 0
+        }
+        let ratio = scrollView.contentView.bounds.origin.y / outH
         
         
-        let testCase = """
-        1. 123213
-            1. 123123
-        
-        """
-//        space.amount(0) *> orderedListMarker *> space *> listItemParagraph(depth: 1)
-        print(depthOrderedList(depth: 1).parse(Substring(testCase)).debugDescription)
+        webView.evaluateJavaScript("window.oct_scroll(\(ratio))", completionHandler: nil)
     }
     
     func configTextView() {
