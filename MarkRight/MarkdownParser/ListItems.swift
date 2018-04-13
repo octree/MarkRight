@@ -30,7 +30,7 @@ func listItemParagraph(depth: Int) -> Parser<ContainerNode> {
         return curry(ContainerNode.listItemParagraph)(inline) <^> elt.many.optional
     }
     
-    return  transformer >>- inlineLine
+    return inlineLine >>- transformer
 }
 
 /// listItemFencedCodeBlock = "```", [infoString], lineEnding,

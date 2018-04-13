@@ -83,12 +83,9 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         
         let string = textView.string
         DispatchQueue.global(qos: .default).async {
-            print(string)
-            print(MarkdownParser.parse(string)!.0.debugDescription)
             if let html = MarkdownParser.toHTML(string) {
                 DispatchQueue.main.async {
                     self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
-                    self.autoScrollWebView()
                 }
             } else {
                 print("failed")
@@ -120,6 +117,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
             return true
         }
         return false
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        autoScrollWebView()
     }
 }
 

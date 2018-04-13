@@ -11,6 +11,5 @@ import Foundation
 struct Parser<Result> {
     
     typealias Stream = Substring
-    
     let parse: (Stream) -> (Result, Stream)?
 }
