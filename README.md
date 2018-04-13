@@ -10,4 +10,4 @@
 
 
 
-![Demo](./Shots/Demo.png)
+![Demo](./Shots/demo.png)
