@@ -16,7 +16,7 @@ import Foundation
 
 func stringExcept(_ chs: [Character]) -> Parser<String> {
     
-    return { String($0) } <^> character { !chs.contains($0) }.many
+    return { String($0) } <^> character { !chs.contains($0) }.many1
 }
 
 /// 换行符
@@ -42,7 +42,7 @@ let tab = character { $0 == "\t" }
 
 /// 空白行
 /// {(space | tab)}, lineEnding;
-let blankLine = (space <|> tab).many.optional.followed(by: lineEnding)
+let blankLine = (space <|> tab).many.followed(by: lineEnding)
 
 /// 垂直制表
 /// lineTabulation = U+000B;
@@ -58,13 +58,13 @@ let whiteSpaceCharacter = newLine <|> carriageReturn <|> space <|> tab <|> lineT
 
 /// 空白区域
 /// whitespace = whitespaceCharacter, {whitespaceCharacter};
-let whiteSpace = { String($0) } <^> whiteSpaceCharacter.many
+let whiteSpace = { String($0) } <^> whiteSpaceCharacter.many1
 
 ///  (*any code point in the Unicode Zs class*) | tab | carriageReturn | newline | formFeed;
 let unicodeWhitespaceCharacter = character { CharacterSet.whitespaces.contains($0) }
 
 /// unicodeWhitespace = unicodeWhitespaceCharacter, {unicodeWhitespaceCharacter};
-let unicodeWhitespace = { String($0)} <^> unicodeWhitespaceCharacter.many
+let unicodeWhitespace = { String($0)} <^> unicodeWhitespaceCharacter.many1
 
 /// nonWhitespaceCharacter = (*any character that is not a whitespaceCharacter*);
 let nonWhitespaceCharacter = character { !CharacterSet.whitespacesAndNewlines.contains($0) }
@@ -91,9 +91,9 @@ private func nonBlankLineJoiner(ch: Character, s: [Character]?, e: Character) ->
     return String([ch] + (s ?? []) + [e])
 }
 
-let nonBlankLine = curry(nonBlankLineJoiner) <^> nonWhitespaceCharacter <*> characterWithoutLinebreak.many.optional <*> lineEnding
+let nonBlankLine = curry(nonBlankLineJoiner) <^> nonWhitespaceCharacter <*> characterWithoutLinebreak.many <*> lineEnding
 
-let line = { String($0 ?? []) } <^> character { $0 != "\n" && $0 != "\r" }.many.optional <* lineEnding
+let line = { String($0) } <^> character { $0 != "\n" && $0 != "\r" }.many <* lineEnding
 
 
 

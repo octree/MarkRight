@@ -15,7 +15,7 @@ import Foundation
 
 /// block = containerBlock | leafBlock;
 let block = containerBlock <|> leafBlock
-private let MDParser = { $0 ?? [] } <^> block.many.optional
+private let MDParser = { $0 } <^> block.many
 
 private let theme: String = {
   
@@ -25,14 +25,14 @@ private let theme: String = {
 
 struct MarkdownParser {
     
-    static func parse(_ text: String) -> ([MarkdownNode], Substring)? {
+    static func parse(_ text: String) -> Reply<Parser<Any>.Stream, [MarkdownNode]> {
         return MDParser.parse(Substring(text + "\n"))
     }
     
     static func toHTML(_ text: String) -> String? {
         
-        return parse(text).map { rt in
-            let html = rt.0.map { $0.htmlText }.joined(separator: "\n")
+        let result = parse(text).map { rt -> String in
+            let html = rt.map { $0.htmlText }.joined(separator: "\n")
             
             return """
             <html>
@@ -62,6 +62,12 @@ struct MarkdownParser {
                 <script>hljs.initHighlightingOnLoad();</script>
             </html>
             """
+        }
+        switch result {
+        case let .done(_, html):
+            return html
+        default:
+            return nil
         }
     }
 }

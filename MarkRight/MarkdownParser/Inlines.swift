@@ -15,7 +15,7 @@ import Foundation
 
 
 /// textualContent = characterWithoutLinebreak, {characterWithoutLinebreak};
-let textualContent = { String($0) } <^> characterWithoutLinebreak.many
+let textualContent = { String($0) } <^> characterWithoutLinebreak.many1
 
 /// softLineBreak = "\n";
 let softLineBreak = String.init <^> character { $0 == "\n" }
@@ -40,12 +40,10 @@ let strongEmphasis = InlineNode.strongEmphasis <^> (string("**") *> stringExcept
 let linkText = string("[") *> stringExcept(["\n", "\r", "]"]) <* string("]")
 
 /// linkLabel = "[", nonWhitespaceCharacter, 998 * [nonWhitespaceCharacter], "]"
-//let linkLabel = string("[") *> ( curry({ String([$0] + $1) }) <^> nonWhitespaceCharacter <*>
-//    character { !CharacterSet.whitespacesAndNewlines.contains($0) && $0 != "]" }.max(998)) <* string("]")
 
 /// (*Second Option*)
 //linkDestination = "<", nonWhitespaceCharacter, {nonWhitespaceCharacter}, ">";
-let linkDestination = { String($0) } <^> nonWhitespaceCharacter.except(string(")")).many
+let linkDestination = { String($0) } <^> nonWhitespaceCharacter.difference(string(")")).many1
 
 /// inlineLink = linkText, "(", [whitespace], [linkDestination], [whitespace, linkTitle], [whitespace], ")";
 let inlineLink = curry(InlineNode.inlineLink) <^> linkText <*> ( string("(") *> linkDestination.optional <* string(")"))
@@ -60,9 +58,9 @@ let image =  curry(InlineNode.image) <^> imageDescription <*> (string("(") *> li
 /// inlineWithoutLineBreak = codeSpan | emphasis | strongEmphasis | inlineLink | fullReferenceLink | image | textualContent;
 
 
-let correctTextualContent = { InlineNode.textualContent(String($0)) } <^> (characterWithoutLinebreak.except(codeSpan <|> strongEmphasis <|> emphasis <|> inlineLink <|> image)).many
+let correctTextualContent = { InlineNode.textualContent(String($0)) } <^> (characterWithoutLinebreak.difference(codeSpan <|> strongEmphasis <|> emphasis <|> inlineLink <|> image)).many1
 let inlineWithoutLineBreak = codeSpan <|> strongEmphasis <|> emphasis <|> inlineLink <|> image <|> correctTextualContent
 
 /// inlineLine = inlineWithoutLineBreak, {inlineWithoutLineBreak}, lineBreak;
-let inlineLine = inlineWithoutLineBreak.many <* lineBreak
+let inlineLine = inlineWithoutLineBreak.many1 <* lineBreak
 

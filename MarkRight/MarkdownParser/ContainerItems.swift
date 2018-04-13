@@ -16,22 +16,22 @@ import Foundation
 /// blockQuoteMarker = ">", [" "];
 let blockQuoteMarker = string(">") <* string(" ").optional
 //  blockQuote = blockQuteMarker, inlineLine, {blockQuteMarker, inlineLine};   (*2. Laziness is ignored for now*)
-let blockQuote = ContainerNode.blockQuote <^> (blockQuoteMarker *> inlineLine).many
+let blockQuote = ContainerNode.blockQuote <^> (blockQuoteMarker *> inlineLine).many1
 
 /// bulletListMarker = "-";    (*plus and star ignored for now*)
 let bulletListMarker = character { "+-*".contains($0) }
 func depthBulletListMarker(depth: Int) -> Parser<Character> {
     
-    let indentation = space.amount(4 * depth - 4)
+    let indentation = space.repeat(4 * depth - 4)
     return indentation *> bulletListMarker
 }
 
 /// orderedListMarker = digit, "."                            | ")";
-let digits = character { CharacterSet.decimalDigits.contains($0) }.many
+let digits = character { CharacterSet.decimalDigits.contains($0) }.many1
 let orderedListMarker = digits <* string(".")
 func depthOrderedListMarker(depth: Int) -> Parser<[Character]> {
     
-    let indentation = listItemIndentation.amount(depth - 1)
+    let indentation = listItemIndentation.repeat(depth - 1)
     return indentation *> orderedListMarker
 }
 
@@ -41,27 +41,27 @@ func depthOrderedListMarker(depth: Int) -> Parser<[Character]> {
 /// bulletListItem = bulletListMarker, 3 * space, listItemLeafBlock;
 func depthBulletListItem(depth: Int) -> Parser<ContainerNode> {
     
-    let indentation = listItemIndentation.amount(depth - 1)
+    let indentation = listItemIndentation.repeat(depth - 1)
     return indentation *> bulletListMarker *> listItemParagraph(depth: depth)
 }
 
 /// orderedListItem = orderedListMarker, 2 * space, listItemLeafBlock;
 func depthOrderedListItem(depth: Int) -> Parser<ContainerNode> {
     
-    let indentation = listItemIndentation.amount(depth - 1)
+    let indentation = listItemIndentation.repeat(depth - 1)
     return indentation *> orderedListMarker *> listItemParagraph(depth: depth)
 }
 
 /// orderedList = orderedListItem, [blankLine], {orderedListItem, [blankLine]};
 func depthOrderedList(depth: Int) -> Parser<ContainerNode> {
     
-    return ContainerNode.orderedList <^> (depthOrderedListItem(depth: depth) <* blankLine.optional).many
+    return ContainerNode.orderedList <^> (depthOrderedListItem(depth: depth) <* blankLine.optional).many1
 }
 
 /// bulletList = bulletListItem, [blankLine], {bulletListItem, [blankLine]};
 func depthBulletList(depth: Int) -> Parser<ContainerNode> {
     
-    return ContainerNode.bulletList <^> (depthBulletListItem(depth: depth) <* blankLine.optional).many
+    return ContainerNode.bulletList <^> (depthBulletListItem(depth: depth) <* blankLine.optional).many1
 }
 
 //containerBlock = blockQuote;

@@ -46,7 +46,7 @@ let atxHeading1 = BlockNode.h1 <^> (string("#") *> space *> textualContent <* sp
 
         ```javascript
         // 小明是傻逼，只会 JS
-        console.log("小明的爸爸是傻逼")
+        console.log("Javascript === Shit")
         ```
 2. `创世`节点，没有爸爸
 3. 学 `PHP` 并不能救中国

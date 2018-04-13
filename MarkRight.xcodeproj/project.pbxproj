@@ -17,6 +17,14 @@
 		C27C6EDE207EE2E100178A1F /* ContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C6EDD207EE2E100178A1F /* ContainerNode.swift */; };
 		C27C6EE0207EF17D00178A1F /* theme.css in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EDF207EF17D00178A1F /* theme.css */; };
 		C27C6EE3207EF41000178A1F /* css_injector.js in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EE2207EF41000178A1F /* css_injector.js */; };
+		C28245AB20810148001E0561 /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A320810147001E0561 /* Runes.swift */; };
+		C28245AC20810148001E0561 /* ParserRunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A420810147001E0561 /* ParserRunes.swift */; };
+		C28245AD20810148001E0561 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A520810148001E0561 /* Parser.swift */; };
+		C28245AE20810148001E0561 /* ParserCombinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A620810148001E0561 /* ParserCombinator.swift */; };
+		C28245AF20810148001E0561 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A720810148001E0561 /* ParserError.swift */; };
+		C28245B020810148001E0561 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A820810148001E0561 /* Reply.swift */; };
+		C28245B120810148001E0561 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245A920810148001E0561 /* Curry.swift */; };
+		C28245B220810148001E0561 /* Parser+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245AA20810148001E0561 /* Parser+Extension.swift */; };
 		C2B081D4207E7855005C47F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D3207E7855005C47F4 /* AppDelegate.swift */; };
 		C2B081D6207E7855005C47F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D5207E7855005C47F4 /* ViewController.swift */; };
 		C2B081D8207E7856005C47F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B081D7207E7856005C47F4 /* Assets.xcassets */; };
@@ -32,12 +40,6 @@
 		C2B0820D207E786C005C47F4 /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FB207E786C005C47F4 /* MarkdownNode.swift */; };
 		C2B0820E207E786C005C47F4 /* MarkdownNode+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FD207E786C005C47F4 /* MarkdownNode+HTML.swift */; };
 		C2B0820F207E786C005C47F4 /* CharacterSet+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FE207E786C005C47F4 /* CharacterSet+Extension.swift */; };
-		C2B08210207E786C005C47F4 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08200207E786C005C47F4 /* Curry.swift */; };
-		C2B08211207E786C005C47F4 /* Combinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08201207E786C005C47F4 /* Combinator.swift */; };
-		C2B08212207E786C005C47F4 /* Parser+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08202207E786C005C47F4 /* Parser+Extension.swift */; };
-		C2B08213207E786C005C47F4 /* Parser+Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08203207E786C005C47F4 /* Parser+Runes.swift */; };
-		C2B08214207E786C005C47F4 /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08204207E786C005C47F4 /* Runes.swift */; };
-		C2B08215207E786C005C47F4 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B08205207E786C005C47F4 /* Parser.swift */; };
 		C2D094FE207F8CB0002B033F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FA207F8CAF002B033F /* Constants.swift */; };
 		C2D094FF207F8CB0002B033F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FB207F8CAF002B033F /* Utilities.swift */; };
 		C2D09500207F8CB0002B033F /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FC207F8CAF002B033F /* ParseError.swift */; };
@@ -65,6 +67,14 @@
 		C27C6EDD207EE2E100178A1F /* ContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNode.swift; sourceTree = "<group>"; };
 		C27C6EDF207EF17D00178A1F /* theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = theme.css; sourceTree = "<group>"; };
 		C27C6EE2207EF41000178A1F /* css_injector.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = css_injector.js; sourceTree = "<group>"; };
+		C28245A320810147001E0561 /* Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runes.swift; sourceTree = "<group>"; };
+		C28245A420810147001E0561 /* ParserRunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserRunes.swift; sourceTree = "<group>"; };
+		C28245A520810148001E0561 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		C28245A620810148001E0561 /* ParserCombinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserCombinator.swift; sourceTree = "<group>"; };
+		C28245A720810148001E0561 /* ParserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
+		C28245A820810148001E0561 /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		C28245A920810148001E0561 /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		C28245AA20810148001E0561 /* Parser+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Extension.swift"; sourceTree = "<group>"; };
 		C2B081D0207E7855005C47F4 /* MarkRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B081D3207E7855005C47F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2B081D5207E7855005C47F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,12 +95,6 @@
 		C2B081FB207E786C005C47F4 /* MarkdownNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		C2B081FD207E786C005C47F4 /* MarkdownNode+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MarkdownNode+HTML.swift"; sourceTree = "<group>"; };
 		C2B081FE207E786C005C47F4 /* CharacterSet+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extension.swift"; sourceTree = "<group>"; };
-		C2B08200207E786C005C47F4 /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
-		C2B08201207E786C005C47F4 /* Combinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinator.swift; sourceTree = "<group>"; };
-		C2B08202207E786C005C47F4 /* Parser+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Extension.swift"; sourceTree = "<group>"; };
-		C2B08203207E786C005C47F4 /* Parser+Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Runes.swift"; sourceTree = "<group>"; };
-		C2B08204207E786C005C47F4 /* Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runes.swift; sourceTree = "<group>"; };
-		C2B08205207E786C005C47F4 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C2D094FA207F8CAF002B033F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C2D094FB207F8CAF002B033F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C2D094FC207F8CAF002B033F /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
@@ -220,12 +224,14 @@
 		C2B081FF207E786C005C47F4 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				C2B08200207E786C005C47F4 /* Curry.swift */,
-				C2B08201207E786C005C47F4 /* Combinator.swift */,
-				C2B08202207E786C005C47F4 /* Parser+Extension.swift */,
-				C2B08203207E786C005C47F4 /* Parser+Runes.swift */,
-				C2B08204207E786C005C47F4 /* Runes.swift */,
-				C2B08205207E786C005C47F4 /* Parser.swift */,
+				C28245A920810148001E0561 /* Curry.swift */,
+				C28245A520810148001E0561 /* Parser.swift */,
+				C28245AA20810148001E0561 /* Parser+Extension.swift */,
+				C28245A620810148001E0561 /* ParserCombinator.swift */,
+				C28245A720810148001E0561 /* ParserError.swift */,
+				C28245A420810147001E0561 /* ParserRunes.swift */,
+				C28245A820810148001E0561 /* Reply.swift */,
+				C28245A320810147001E0561 /* Runes.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -345,31 +351,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				080D3448207F00F1002E28E4 /* BlockNode+HTML.swift in Sources */,
+				C28245AC20810148001E0561 /* ParserRunes.swift in Sources */,
 				C2B0820A207E786C005C47F4 /* Inlines.swift in Sources */,
+				C28245AF20810148001E0561 /* ParserError.swift in Sources */,
+				C28245B020810148001E0561 /* Reply.swift in Sources */,
 				C2D094FF207F8CB0002B033F /* Utilities.swift in Sources */,
+				C28245AD20810148001E0561 /* Parser.swift in Sources */,
+				C28245AB20810148001E0561 /* Runes.swift in Sources */,
 				C27C6ED8207EE00000178A1F /* InlineNode.swift in Sources */,
 				C2B08206207E786C005C47F4 /* ContainerItems.swift in Sources */,
-				C2B08213207E786C005C47F4 /* Parser+Runes.swift in Sources */,
 				C2B0820E207E786C005C47F4 /* MarkdownNode+HTML.swift in Sources */,
 				080D3446207EFEC8002E28E4 /* InlineNode+HTML.swift in Sources */,
 				C2D09500207F8CB0002B033F /* ParseError.swift in Sources */,
 				C2B0820D207E786C005C47F4 /* MarkdownNode.swift in Sources */,
 				C2B0820F207E786C005C47F4 /* CharacterSet+Extension.swift in Sources */,
+				C28245AE20810148001E0561 /* ParserCombinator.swift in Sources */,
 				C2B0820B207E786C005C47F4 /* GenericStringTerms.swift in Sources */,
 				080D344A207F02C1002E28E4 /* InlineLine+HTML.swift in Sources */,
 				C2B0820C207E786C005C47F4 /* HTMLConversionProtocol.swift in Sources */,
-				C2B08211207E786C005C47F4 /* Combinator.swift in Sources */,
 				C2B08207207E786C005C47F4 /* LeafBlock.swift in Sources */,
 				C27C6EDA207EE08C00178A1F /* BlockNode.swift in Sources */,
-				C2B08210207E786C005C47F4 /* Curry.swift in Sources */,
 				C2B081D6207E7855005C47F4 /* ViewController.swift in Sources */,
-				C2B08212207E786C005C47F4 /* Parser+Extension.swift in Sources */,
 				C2B081D4207E7855005C47F4 /* AppDelegate.swift in Sources */,
-				C2B08215207E786C005C47F4 /* Parser.swift in Sources */,
 				0821E720207F2DA600E06A9D /* ContainerNode+HTML.swift in Sources */,
 				C27C6EDE207EE2E100178A1F /* ContainerNode.swift in Sources */,
-				C2B08214207E786C005C47F4 /* Runes.swift in Sources */,
+				C28245B120810148001E0561 /* Curry.swift in Sources */,
 				C2B08208207E786C005C47F4 /* ListItems.swift in Sources */,
+				C28245B220810148001E0561 /* Parser+Extension.swift in Sources */,
 				C2D09501207F8CB0002B033F /* String+HTMLEntities.swift in Sources */,
 				C2B08209207E786C005C47F4 /* MarkdownParser.swift in Sources */,
 				C2D094FE207F8CB0002B033F /* Constants.swift in Sources */,
