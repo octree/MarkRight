@@ -9,7 +9,7 @@
 import Cocoa
 import WebKit
 
-class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDelegate {
+class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDelegate, NSTextViewDelegate {
     
     var textView: NSTextView {
         
@@ -39,21 +39,22 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         textView.string = text
         if let html = MarkdownParser.toHTML(text) {
             self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
+            autoScrollWebView()
         }
     }
     
     func configScrollView() {
         
         scrollView.contentView.postsBoundsChangedNotifications = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.boundsDidChange), name: NSView.boundsDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.autoScrollWebView), name: NSView.boundsDidChangeNotification, object: nil)
     }
     
-    @objc func boundsDidChange() {
+    @objc func autoScrollWebView() {
         
         let height = scrollView.documentView!.frame.size.height
         let viewHeight = scrollView.frame.size.height
         var outH = height - viewHeight
-        print(outH)
+        
         if outH < 0 {
             outH = 0
         }
@@ -73,6 +74,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         textView.isAutomaticDashSubstitutionEnabled = false
         textView.enabledTextCheckingTypes = 0
         textView.textStorage?.delegate = self
+        textView.delegate = self
     }
     
     //    MARK: NSTextStorageDelegate
@@ -81,9 +83,12 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         
         let string = textView.string
         DispatchQueue.global(qos: .default).async {
+            print(string)
+            print(MarkdownParser.parse(string)!.0.debugDescription)
             if let html = MarkdownParser.toHTML(string) {
                 DispatchQueue.main.async {
                     self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
+                    self.autoScrollWebView()
                 }
             } else {
                 print("failed")
@@ -104,6 +109,17 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
             NSWorkspace.shared.open(url)
         }
         decisionHandler(.cancel)
+    }
+    
+    //    MARK: NSTextViewDelegate
+    func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        
+        if commandSelector == #selector(textView.insertTab(_:)) {
+
+            textView.insertText("    ", replacementRange: textView.selectedRange())
+            return true
+        }
+        return false
     }
 }
 

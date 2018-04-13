@@ -15,9 +15,11 @@ import Foundation
 
 /// listItemParagraph = inlineLine, {4 * space, inlineLine};
 
+let listItemIndentation = space.amount(4)// <|> string("\t")
+
 func listItemParagraph(depth: Int) -> Parser<ContainerNode> {
     
-    let indentation = space.amount(4 * depth)
+    let indentation = listItemIndentation.amount(depth)
     
     let lines =  ContainerNode.inlineLines <^> (indentation *> inlineLine).many
     let transformer: (InlineLine) -> Parser<ContainerNode> = {
@@ -36,7 +38,7 @@ func listItemParagraph(depth: Int) -> Parser<ContainerNode> {
 /// 4 * space, "```", lineEnding;
 func listItemFencedCodeBlock(depth: Int) -> Parser<ContainerNode> {
  
-    let indentation = space.amount(4 * depth)
+    let indentation = listItemIndentation.amount(depth)
     
     return curry(ContainerNode.listItemFencedCodeBlock) <^> (indentation *> string("```") *> textualContent.optional <* lineEnding) <*>
         (indentation *> line).except(indentation *> string("```")).many.optional <* indentation <* string("```") <* lineEnding

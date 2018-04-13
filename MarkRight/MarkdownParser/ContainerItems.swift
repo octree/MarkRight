@@ -31,7 +31,7 @@ let digits = character { CharacterSet.decimalDigits.contains($0) }.many
 let orderedListMarker = digits <* string(".")
 func depthOrderedListMarker(depth: Int) -> Parser<[Character]> {
     
-    let indentation = space.amount(4 * depth - 4)
+    let indentation = listItemIndentation.amount(depth - 1)
     return indentation *> orderedListMarker
 }
 
@@ -41,14 +41,14 @@ func depthOrderedListMarker(depth: Int) -> Parser<[Character]> {
 /// bulletListItem = bulletListMarker, 3 * space, listItemLeafBlock;
 func depthBulletListItem(depth: Int) -> Parser<ContainerNode> {
     
-    let indentation = space.amount(4 * depth - 4)
+    let indentation = listItemIndentation.amount(depth - 1)
     return indentation *> bulletListMarker *> listItemParagraph(depth: depth)
 }
 
 /// orderedListItem = orderedListMarker, 2 * space, listItemLeafBlock;
 func depthOrderedListItem(depth: Int) -> Parser<ContainerNode> {
     
-    let indentation = space.amount(4 * depth - 4)
+    let indentation = listItemIndentation.amount(depth - 1)
     return indentation *> orderedListMarker *> listItemParagraph(depth: depth)
 }
 
