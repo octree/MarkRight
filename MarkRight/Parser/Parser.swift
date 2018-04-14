@@ -9,6 +9,7 @@
 import Foundation
 
 public struct Parser<Stream, T> {
+    
     let parse: (Stream) -> Reply<Stream, T>
 }
 
