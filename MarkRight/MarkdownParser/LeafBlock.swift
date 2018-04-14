@@ -57,8 +57,9 @@ let fencedCodeBlock = curry(BlockNode.fencedCodeBlock) <^> (string("```") *> tex
                     line.difference(string("```")).many <* string("```") <* lineEnding
 
 /// paragraph = inlineLine, {inlineLine};
-let paragraph = BlockNode.paragraph <^> inlineLine.difference(blankLine).many1
+private let specialLeaf = thematicBreak <|> atxHeading <|> indentedCodeBlock <|> fencedCodeBlock <|> blankLines
+let paragraph = BlockNode.paragraph <^> inlineLine.difference(specialLeaf).many1
 
 // leafBlock = thematicBreak | atxHeading | indentedCodeBlock | fencedCodeBlock | linkReferenceDefinition | paragraph | blankLines;
-let leafBlock = MarkdownNode.leaf <^> (thematicBreak <|> atxHeading <|> indentedCodeBlock <|> fencedCodeBlock <|> paragraph <|> blankLines)
+let leafBlock = MarkdownNode.leaf <^> ( specialLeaf <|> paragraph )
 
