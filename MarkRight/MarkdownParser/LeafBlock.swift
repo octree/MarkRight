@@ -63,7 +63,7 @@ let fencedCodeBlock = curry(BlockNode.fencedCodeBlock) <^> (string("```") *> tex
 private let tableSep = character { $0 == "|" }
 
 
-private let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- {
+private let tableData = space.many *> (not(tableSep <|> lineEnding) >>- {
         substring in
         return MDParser<[InlineNode]> {
             
