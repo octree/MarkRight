@@ -8,9 +8,7 @@
 
 import Foundation
 
-public struct Parser<T> {
-    typealias Stream = Substring
-    
+public struct Parser<Stream, T> {
     let parse: (Stream) -> Reply<Stream, T>
 }
 
@@ -18,27 +16,27 @@ public struct Parser<T> {
 
 public extension Parser {
     
-    public static func unit(_ x: T) -> Parser<T> {
+    public static func unit(_ x: T) -> Parser<Stream, T> {
         
         return Parser { .done($0, x) }
     }
     
-    public static var ignore: Parser<()> {
+    public static var ignore: Parser<Stream, ()> {
         
-        return Parser<()>.unit(())
+        return .unit(())
     }
     
 //    Functor
-    public func map<U>(_ f: @escaping (T) -> U) -> Parser<U> {
+    public func map<U>(_ f: @escaping (T) -> U) -> Parser<Stream, U> {
         
-        return Parser<U> { self.parse($0).map(f) }
+        return Parser<Stream, U> { self.parse($0).map(f) }
     }
     
     
 //    Monad
-    public func then<U>(_ f: @escaping (T) -> Parser<U>) -> Parser<U> {
+    public func then<U>(_ f: @escaping (T) -> Parser<Stream, U>) -> Parser<Stream, U> {
         
-        return Parser<U> {
+        return Parser<Stream, U> {
             
             switch self.parse($0) {
             case let .done(remainder, out):
@@ -50,7 +48,7 @@ public extension Parser {
     }
     
 //    Applicative
-    public func apply<U>(_ mf: Parser<(T) -> U>) -> Parser<U> {
+    public func apply<U>(_ mf: Parser<Stream, (T) -> U>) -> Parser<Stream, U> {
         
         return mf.then(map)
     }

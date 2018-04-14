@@ -10,14 +10,14 @@ import Foundation
 
 /// Functor Operator
 /// a -> b -> m a -> m b
-public func <^><A, B>(lhs: @escaping (A) -> B, rhs: Parser<A>) -> Parser<B> {
+public func <^><Stream, A, B>(lhs: @escaping (A) -> B, rhs: Parser<Stream, A>) -> Parser<Stream, B> {
     return rhs.map(lhs)
 }
 
 
 /// Monad
 ///  m a -> (a -> m b) -> m b
-public func >>-<A, B>(lhs: Parser<A>, rhs: @escaping (A) -> Parser<B>) -> Parser<B> {
+public func >>-<Stream, A, B>(lhs: Parser<Stream, A>, rhs: @escaping (A) -> Parser<Stream, B>) -> Parser<Stream, B> {
     
     return lhs.then(rhs)
 }
@@ -25,14 +25,14 @@ public func >>-<A, B>(lhs: Parser<A>, rhs: @escaping (A) -> Parser<B>) -> Parser
 
 /// applicative
 /// m (a -> b) -> m a -> m b
-public func <*><A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
+public func <*><Stream, A, B>(lhs: Parser<Stream, (A) -> B>, rhs: Parser<Stream, A>) -> Parser<Stream, B> {
     
     return rhs.apply(lhs)
 }
 
 /// Ignoring Left
 /// ma -> mb -> mb
-public func *><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<B> {
+public func *><Stream, A, B>(lhs: Parser<Stream, A>, rhs: Parser<Stream, B>) -> Parser<Stream, B> {
     
     return curry({ _, y in y }) <^> lhs <*> rhs
 }
@@ -40,7 +40,7 @@ public func *><A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<B> {
 
 /// Ignoring Right
 /// ma -> mb -> ma
-public func <*<A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<A > {
+public func <*<Stream, A, B>(lhs: Parser<Stream, A>, rhs: Parser<Stream, B>) -> Parser<Stream, A> {
     
     return curry({ x, _ in x }) <^> lhs <*> rhs
 }
@@ -48,7 +48,7 @@ public func <*<A, B>(lhs: Parser<A>, rhs: Parser<B>) -> Parser<A > {
 
 /// or
 /// m a -> m a -> m a
-public func <|><A>(lhs: Parser<A>, rhs: Parser<A>) -> Parser<A> {
+public func <|><Stream, A>(lhs: Parser<Stream, A>, rhs: Parser<Stream, A>) -> Parser<Stream, A> {
     
     return Parser {
         

@@ -17,12 +17,12 @@ import Foundation
 
 let listItemIndentation = space.repeat(4)// <|> string("\t")
 
-func listItemParagraph(depth: Int) -> Parser<ContainerNode> {
+func listItemParagraph(depth: Int) -> MDParser<ContainerNode> {
     
     let indentation = listItemIndentation.repeat(depth)
     
     let lines =  ContainerNode.inlineLines <^> (indentation *> inlineLine).many1
-    let transformer: (InlineLine) -> Parser<ContainerNode> = {
+    let transformer: (InlineLine) -> MDParser<ContainerNode> = {
         inline in
         
         let special = listItemFencedCodeBlock(depth: depth) <|> depthOrderedList(depth: depth + 1) <|> depthBulletList(depth: depth + 1)
@@ -36,7 +36,7 @@ func listItemParagraph(depth: Int) -> Parser<ContainerNode> {
 /// listItemFencedCodeBlock = "```", [infoString], lineEnding,
 /// {4 * space, line},
 /// 4 * space, "```", lineEnding;
-func listItemFencedCodeBlock(depth: Int) -> Parser<ContainerNode> {
+func listItemFencedCodeBlock(depth: Int) -> MDParser<ContainerNode> {
  
     let indentation = listItemIndentation.repeat(depth)
     

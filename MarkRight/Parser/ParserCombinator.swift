@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func character(matching condition: @escaping (Character) -> Bool) -> Parser<Character> {
+public func character(matching condition: @escaping (Character) -> Bool) -> Parser<Substring, Character> {
     
     return Parser{ input in
         
@@ -23,9 +23,9 @@ public func character(matching condition: @escaping (Character) -> Bool) -> Pars
     }
 }
 
-public func string(_ text: String) -> Parser<String> {
+public func string(_ text: String) -> Parser<Substring, String> {
     
-    return Parser<String> {
+    return Parser<Substring, String> {
         
         if $0.hasPrefix(text) {
             
@@ -35,7 +35,7 @@ public func string(_ text: String) -> Parser<String> {
     }
 }
 
-public func choice<A>(_ sequence: [Parser<A>]) -> Parser<A> {
+public func choice<A>(_ sequence: [Parser<Stream, A>]) -> Parser<Stream, A> {
     
     return sequence.reduce(Parser.fail, <|>)
 }

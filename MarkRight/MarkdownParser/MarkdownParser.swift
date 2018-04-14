@@ -15,7 +15,7 @@ import Foundation
 
 /// block = containerBlock | leafBlock;
 let block = containerBlock <|> leafBlock
-private let MDParser = { $0 } <^> block.many
+private let markdownParser = { $0 } <^> block.many
 
 private let theme: String = {
   
@@ -25,8 +25,8 @@ private let theme: String = {
 
 struct MarkdownParser {
     
-    static func parse(_ text: String) -> Reply<Parser<Any>.Stream, [MarkdownNode]> {
-        return MDParser.parse(Substring(text + "\n"))
+    static func parse(_ text: String) -> Reply<Substring, [MarkdownNode]> {
+        return markdownParser.parse(Substring(text + "\n"))
     }
     
     static func toHTML(_ text: String) -> String? {

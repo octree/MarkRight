@@ -13,8 +13,9 @@ import Foundation
  **********  Generic String Terms  ***********
  ********************************************/
 
+typealias MDParser<T> = Parser<Substring, T>
 
-func stringExcept(_ chs: [Character]) -> Parser<String> {
+func stringExcept(_ chs: [Character]) -> MDParser<String> {
     
     return { String($0) } <^> character { !chs.contains($0) }.many1
 }
