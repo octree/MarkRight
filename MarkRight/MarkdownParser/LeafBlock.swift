@@ -60,14 +60,14 @@ let fencedCodeBlock = curry(BlockNode.fencedCodeBlock) <^> (string("```") *> tex
 
 /************************************ MARKDOWN TABLE ******************************************/
 
-let tableSep = character { $0 == "|" }
+private let tableSep = character { $0 == "|" }
 
 
-let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- {
+private let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- {
         substring in
         return MDParser<[InlineNode]> {
             
-            guard case let .done(_, nodes) = inlineWithoutLineBreak.many1.parse(substring) else {
+            guard case let .done(_, nodes) = inlineWithoutLineBreak.many.parse(substring) else {
                 return .fail(ParserError.notMatch)
             }
             return .done($0, nodes)
@@ -76,23 +76,23 @@ let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- 
 
 private let colon = character { $0 == ":" }
 private typealias TableDataNodeGen = (TableDataAlignment) -> ([InlineNode]) -> BlockNode
-private let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
 
-private let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> tableSep.lookAhead)
 
-private let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.right) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.right) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
 
-private let tableRow = tableSep.optional *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> tableData.sepEnd1(by: tableSep)) <* space.many <* lineBreak
+private let tableRow = tableSep *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> (tableData <* tableSep).many1) <* space.many <* lineBreak
 
 private func specificAmountTableRow(_ n: Int) -> MDParser<[[InlineNode]]> {
     
-    return tableSep.optional *> ( { x in { y in x + [y] }} <^> (tableData <* tableSep).repeat(n - 1)) <*> (tableData <* tableSep.optional) <* space.many <* lineBreak
+    return tableSep *> (tableData <* tableSep).repeat(n) <* space.many <* lineBreak
 }
 
 private func specificAmountDelimiterRow(_ n: Int) -> MDParser<[(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
     
     let delimiterItem = leftAlignmentData <|> centerAlignmentData <|> rightAlignmentData
-    return tableSep.optional *> ( { x in { y in x + [y] }} <^> (delimiterItem <* tableSep).repeat(n - 1)) <*> (delimiterItem <* tableSep.optional) <* space.many <* lineBreak
+    return tableSep *> (delimiterItem <* tableSep).repeat(n) <* space.many <* lineBreak
 }
 
 private func tableRowApply(f: TableDataNodeGen,fs: [(TableDataNodeGen) -> ([InlineNode]) -> BlockNode],row: [[InlineNode]]) -> BlockNode {
