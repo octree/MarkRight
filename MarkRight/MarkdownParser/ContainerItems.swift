@@ -42,14 +42,14 @@ func depthOrderedListMarker(depth: Int) -> MDParser<[Character]> {
 func depthBulletListItem(depth: Int) -> MDParser<ContainerNode> {
     
     let indentation = listItemIndentation.repeat(depth - 1)
-    return indentation *> bulletListMarker *> listItemParagraph(depth: depth)
+    return indentation *> bulletListMarker *> space *> listItemParagraph(depth: depth)
 }
 
 /// orderedListItem = orderedListMarker, 2 * space, listItemLeafBlock;
 func depthOrderedListItem(depth: Int) -> MDParser<ContainerNode> {
     
     let indentation = listItemIndentation.repeat(depth - 1)
-    return indentation *> orderedListMarker *> listItemParagraph(depth: depth)
+    return indentation *> orderedListMarker *> space *> listItemParagraph(depth: depth)
 }
 
 /// orderedList = orderedListItem, [blankLine], {orderedListItem, [blankLine]};
