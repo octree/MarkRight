@@ -1,5 +1,5 @@
 //
-//  ParserCombinator.swift
+//  SubstringParser.swift
 //  ParserCombinator
 //
 //  Created by Octree on 2018/4/13.
