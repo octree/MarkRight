@@ -8,6 +8,30 @@
 
 import Foundation
 
+extension TableDataAlignment: HTMLConversionProtocol {
+    
+    var htmlText: String {
+        
+        switch self {
+        case .center:
+            
+            return """
+            align="center"
+            """
+        case .left:
+            
+            return """
+            align="left"
+            """
+        case .right:
+            
+            return """
+            align="right"
+            """
+        }
+    }
+}
+
 private func headerHTMLString(text: String, level: Int) -> String {
     
     return """
@@ -55,6 +79,32 @@ extension BlockNode: HTMLConversionProtocol {
         case let .indentedCodeBlock(chunks):
             return """
             \(chunks.htmlText)
+            """
+        case let .tableHeading(align, inlines):
+            
+            return """
+            <th \(align.htmlText)>\(inlines.htmlText)</th>
+            """
+        case let .tableData(align, inlines):
+            return """
+            <td \(align.htmlText)>\(inlines.htmlText)</td>
+            """
+        case let .tableRow(items):
+            return """
+            <tr>
+                \(items.htmlText)
+            </tr>
+            """
+        case let .table(thr, tdr):
+            return """
+            <table>
+                <thead>
+                    \(thr.htmlText)
+                </thead>
+                <tbody>
+                    \(tdr.htmlText)
+                </tbody>
+            </table>
             """
         }
     }

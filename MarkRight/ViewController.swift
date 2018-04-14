@@ -41,6 +41,16 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
             self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
             autoScrollWebView()
         }
+        
+//        let bugTest = """
+//        | hello | word |
+//        |:-----:|:----:|
+//        | hello | word |
+//
+//        """
+//        let parser = table
+//        
+//        print(parser.parse(Substring(bugTest)))
     }
     
     func configScrollView() {

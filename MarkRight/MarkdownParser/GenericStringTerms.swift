@@ -15,6 +15,20 @@ import Foundation
 
 typealias MDParser<T> = Parser<Substring, T>
 
+func not<T>(_ parser: MDParser<T>) -> MDParser<Substring> {
+    
+    return MDParser<Substring> {
+        input in
+        var chs = [Character]()
+        var remainder = input
+        while let first = remainder.first, case .fail = parser.parse(remainder) {
+            chs.append(first)
+            remainder = remainder.dropFirst()
+        }
+        return .done(remainder, Substring(chs))
+    }
+}
+
 func stringExcept(_ chs: [Character]) -> MDParser<String> {
     
     return { String($0) } <^> character { !chs.contains($0) }.many1

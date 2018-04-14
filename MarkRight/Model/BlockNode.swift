@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum TableDataAlignment {
+    
+    case left
+    case center
+    case right
+}
+
 indirect enum BlockNode {
     
     case h1(String)
@@ -25,4 +32,8 @@ indirect enum BlockNode {
     case indentedChunk([String])
 //  [indentedChunk]
     case indentedCodeBlock([BlockNode])
+    case tableHeading(TableDataAlignment, [InlineNode])
+    case tableData(TableDataAlignment, [InlineNode])
+    case tableRow([BlockNode])
+    case table(BlockNode, [BlockNode])
 }

@@ -109,3 +109,43 @@ blockquote {
     border-left: solid 2px #3FC6B4;
     padding: 8px 10px;
 }
+
+table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow: auto;
+    line-height: 1.5;
+    word-wrap: break-word;
+    border-color: solid 1px #66818A;
+    /* background-color: #586D75; */
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+th {
+    font-weight: bold;
+    padding: 6px 12px;
+    border: 1px solid #66818A;
+}
+
+td {
+    padding: 6px 12px;
+    border: 1px solid #66818A;
+}
+
+tr:nth-child(2n) {
+    /* background-color: #839496; */
+}
+

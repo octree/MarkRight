@@ -14,7 +14,8 @@ import Foundation
  ********************************************/
 
 /// thematicBreak = (3 * "-"), {-}, {space}, lineEnding;
-let thematicBreak = { _ in return BlockNode.thematicBreak } <^> string("---").followed(by: string("-").many).followed(by: space.many).followed(by: lineEnding)
+private let hyphen = character { $0 == "-" }
+let thematicBreak = { _ in return BlockNode.thematicBreak } <^> hyphen.repeat(3).followed(by: string("-").many).followed(by: space.many).followed(by: lineEnding)
 
 
 ///(*Inline Parsing ommitted, for now the Headings can only be simple Text*)
@@ -56,10 +57,75 @@ let indentedCodeBlock =  BlockNode.indentedCodeBlock <^> (blankLine *> (indented
 let fencedCodeBlock = curry(BlockNode.fencedCodeBlock) <^> (string("```") *> textualContent.optional <* lineEnding) <*>
                     line.difference(string("```")).many <* string("```") <* lineEnding
 
+
+/************************************ MARKDOWN TABLE ******************************************/
+
+let tableSep = character { $0 == "|" }
+
+
+let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- {
+        substring in
+        return MDParser<[InlineNode]> {
+            
+            guard case let .done(_, nodes) = inlineWithoutLineBreak.many1.parse(substring) else {
+                return .fail(ParserError.notMatch)
+            }
+            return .done($0, nodes)
+        }
+    }) <* space.many
+
+private let colon = character { $0 == ":" }
+typealias TableDataNodeGen = (TableDataAlignment) -> ([InlineNode]) -> BlockNode
+let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+
+let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> (tableSep.lookAhead <|> lineEnding))
+
+let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+
+let tableRow = tableSep.optional *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> tableData.sepEnd1(by: tableSep)) <* space.many <* lineBreak
+
+func specificAmountTableRow(_ n: Int) -> MDParser<[[InlineNode]]> {
+    
+    return tableSep.optional *> ( { x in { y in x + [y] }} <^> (tableData <* tableSep).repeat(n - 1)) <*> (tableData <* tableSep.optional) <* space.many <* lineBreak
+}
+
+func specificAmountDelimiterRow(_ n: Int) -> MDParser<[(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
+    
+    let delimiterItem = leftAlignmentData <|> centerAlignmentData <|> rightAlignmentData
+    return tableSep.optional *> ( { x in { y in x + [y] }} <^> (delimiterItem <* tableSep).repeat(n - 1)) <*> (delimiterItem <* tableSep.optional) <* space.many <* lineBreak
+}
+
+private func tableRowApply(f: TableDataNodeGen,fs: [(TableDataNodeGen) -> ([InlineNode]) -> BlockNode],row: [[InlineNode]]) -> BlockNode {
+    let count = fs.count
+    let datas = (0 ..< count).map { fs[$0](f)(row[$0]) }
+    return BlockNode.tableRow(datas)
+}
+
+private func tableRowsApply(f: TableDataNodeGen,fs: [(TableDataNodeGen) -> ([InlineNode]) -> BlockNode],rows: [[[InlineNode]]]) -> [BlockNode] {
+    
+    return rows.map { tableRowApply(f: f, fs: fs, row: $0) }
+}
+
+private func tableGen(headingRow: [[InlineNode]], fs: [(TableDataNodeGen) -> ([InlineNode]) -> BlockNode],rows: [[[InlineNode]]]) -> BlockNode {
+    
+    let headingRow = tableRowApply(f: curry(BlockNode.tableHeading), fs: fs, row: headingRow)
+    return BlockNode.table(headingRow, tableRowsApply(f: curry(BlockNode.tableData), fs: fs, rows: rows))
+}
+
+let table = tableRow >>- {
+    row in
+    
+    return curry(tableGen)(row) <^> specificAmountDelimiterRow(row.count) <*> specificAmountTableRow(row.count).many1
+}
+
+/************************************ MARKDOWN TABLE ******************************************/
+
+
 /// paragraph = inlineLine, {inlineLine};
-private let specialLeaf = thematicBreak <|> atxHeading <|> indentedCodeBlock <|> fencedCodeBlock <|> blankLines
+private let specialLeaf = table <|> thematicBreak <|> atxHeading <|> indentedCodeBlock <|> fencedCodeBlock <|> blankLines
 let paragraph = BlockNode.paragraph <^> inlineLine.difference(specialLeaf).many1
 
 // leafBlock = thematicBreak | atxHeading | indentedCodeBlock | fencedCodeBlock | linkReferenceDefinition | paragraph | blankLines;
+
 let leafBlock = MarkdownNode.leaf <^> ( specialLeaf <|> paragraph )
 
