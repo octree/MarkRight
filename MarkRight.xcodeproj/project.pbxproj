@@ -25,6 +25,7 @@
 		C28245D02081E6D1001E0561 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C82081E6D0001E0561 /* ParserError.swift */; };
 		C28245D12081E6D1001E0561 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C92081E6D0001E0561 /* Reply.swift */; };
 		C28245D22081E6D1001E0561 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245CA2081E6D1001E0561 /* Curry.swift */; };
+		C28245D420826EBE001E0561 /* theme-solarized-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = C28245D320826EBE001E0561 /* theme-solarized-dark.css */; };
 		C2B081D4207E7855005C47F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D3207E7855005C47F4 /* AppDelegate.swift */; };
 		C2B081D6207E7855005C47F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D5207E7855005C47F4 /* ViewController.swift */; };
 		C2B081D8207E7856005C47F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B081D7207E7856005C47F4 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		C28245C82081E6D0001E0561 /* ParserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
 		C28245C92081E6D0001E0561 /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		C28245CA2081E6D1001E0561 /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
+		C28245D320826EBE001E0561 /* theme-solarized-dark.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "theme-solarized-dark.css"; sourceTree = "<group>"; };
 		C2B081D0207E7855005C47F4 /* MarkRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B081D3207E7855005C47F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2B081D5207E7855005C47F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				C27C6EDF207EF17D00178A1F /* theme.css */,
 				C27C6EE2207EF41000178A1F /* css_injector.js */,
 				0821E721207F610B00E06A9D /* Test.md */,
+				C28245D320826EBE001E0561 /* theme-solarized-dark.css */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				C27C6EE3207EF41000178A1F /* css_injector.js in Resources */,
 				C2B081D8207E7856005C47F4 /* Assets.xcassets in Resources */,
 				0821E722207F610B00E06A9D /* Test.md in Resources */,
+				C28245D420826EBE001E0561 /* theme-solarized-dark.css in Resources */,
 				C2B081DB207E7856005C47F4 /* Main.storyboard in Resources */,
 				C27C6EE0207EF17D00178A1F /* theme.css in Resources */,
 			);

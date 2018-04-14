@@ -1,22 +1,13 @@
+
 html, body, * {
     font-size: 16px;
+    color: #B6C2D3;
     margin: 0;
     padding: 0;
-    font-smoothing: antialiased;
+    font-family: 'Open Sans', sans-serif;
 }
 html, body {
-    background: #1c1f2b;
-    letter-spacing: 0.2px;
-    word-wrap: break-word;
-    line-height: 1.6;
-    color: #bdcadb;
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased
-}
-
-code, pre{
-    font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace !important;
-    font-size:1em
+    background: #1D202B;
 }
 
 *, *:before, *:after {
@@ -36,6 +27,7 @@ h1 {
 
 h2 {
     font-size: 1.4em;
+    border-bottom: solid 1px #66818A;
 }
 
 h3 {
@@ -55,15 +47,15 @@ h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #fffffa;
+    color: #FFFFFB;
 }
 
 hr {
     display: block;
-    height: 4px;
+    height: 1px;
     border: 0;
-    border-top: 4px solid #373b4e;
-    margin: 1.5em 0;
+    border-top: 1px solid #66818A;
+    margin: 1em 0;
     padding: 0;
 }
 
@@ -78,17 +70,15 @@ li {
 }
 
 pre {
-    background-color: #2d3143;
+    background-color: #052128;
     padding: 10px 18px;
     border-radius: 4px;
-    color: #9dbed8;
 }
 
 code {
-    background-color: #2d3143;
+    background-color: #052128;
     padding: 2px 4px;
     border-radius: 2px;
-    color: #9dbed8;
 }
 
 strong {
@@ -111,13 +101,7 @@ ol {
 
 
 a {
-    color: #3eb1d0;
-    text-decoration:none;
-    text-decoration-color: #3eb1d0;
-}
-
-a:hover {
-    text-decoration: underline;
+    color: #3FC6B4;
 }
 
 div.oct-sub {
@@ -127,9 +111,8 @@ div.oct-sub {
 blockquote {
     margin: 0;
     display: block;
-    border-left: solid 4px #373b4e;
+    border-left: solid 2px #3FC6B4;
     padding: 8px 10px;
-    color: #9EBFDB;
 }
 
 table {
@@ -140,8 +123,8 @@ table {
     overflow: auto;
     line-height: 1.5;
     word-wrap: break-word;
-    background-color: #2E3143;
-    border: 1px solid #3b3f54;
+    border-color: solid 1px #66818A;
+    /* background-color: #586D75; */
 }
 
 thead {
@@ -159,21 +142,15 @@ tbody {
 th {
     font-weight: bold;
     padding: 6px 12px;
-    border: 1px solid #3b3f54;
+    border: 1px solid #66818A;
 }
 
 td {
     padding: 6px 12px;
-    border: 1px solid #3b3f54;
-}
-
-tr {
-    background-color: #2d3143;
-    color: #b6c2d2;
+    border: 1px solid #66818A;
 }
 
 tr:nth-child(2n) {
-    
-    background-color: #35394b;
+    /* background-color: #839496; */
 }
 

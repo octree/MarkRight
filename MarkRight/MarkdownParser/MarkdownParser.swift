@@ -37,9 +37,8 @@ struct MarkdownParser {
             return """
             <html>
                 <head>
-                    <link rel="stylesheet" href="http://obb77efas.bkt.clouddn.com/solarized-dark-1.css">
+                    <link rel="stylesheet" href="http://obb77efas.bkt.clouddn.com/night.css">
                     <script src="http://obb77efas.bkt.clouddn.com/highlight.pack.js"></script>
-                    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
                     <style type = "text/css">
                     \(theme)
                     </style>

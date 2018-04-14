@@ -1,13 +1,3 @@
-
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-
-
 # 微小的工作
 
 ## 三件小事
@@ -30,7 +20,7 @@
 
 ## 没香港记者跑得快的 Swift
 
-```
+```swift
 struct Parser<Result> {
 
     typealias Stream = Substring
@@ -61,3 +51,18 @@ let atxHeading1 = BlockNode.h1 <^> (string("#") *> space *> textualContent <* sp
     ```php
     echo "PHP 是世界上最好的语言"
     ```
+    
+
+## 表格
+    
+------
+
+| Programming Language        | Ratings           | Change  |
+| ------------- |:-------------:| -----:|
+| Swift    |  1.534 % | 1.34% |
+| Kotlin      |  0.32%   |  1.45% |
+| Scala | 2.1234%      |  0.233333%  |
+| Haskell | 0.233333333%      |    0.123% |
+| Objective-C | 3.25%    |   -1.02% |
+    
+
