@@ -75,21 +75,21 @@ let tableData = space.many *> (not((space.many *> tableSep) <|> lineEnding) >>- 
     }) <* space.many
 
 private let colon = character { $0 == ":" }
-typealias TableDataNodeGen = (TableDataAlignment) -> ([InlineNode]) -> BlockNode
-let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private typealias TableDataNodeGen = (TableDataAlignment) -> ([InlineNode]) -> BlockNode
+private let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
 
-let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> (tableSep.lookAhead <|> lineEnding))
 
-let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
+private let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.right) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> (tableSep.lookAhead <|> lineEnding))
 
-let tableRow = tableSep.optional *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> tableData.sepEnd1(by: tableSep)) <* space.many <* lineBreak
+private let tableRow = tableSep.optional *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> tableData.sepEnd1(by: tableSep)) <* space.many <* lineBreak
 
-func specificAmountTableRow(_ n: Int) -> MDParser<[[InlineNode]]> {
+private func specificAmountTableRow(_ n: Int) -> MDParser<[[InlineNode]]> {
     
     return tableSep.optional *> ( { x in { y in x + [y] }} <^> (tableData <* tableSep).repeat(n - 1)) <*> (tableData <* tableSep.optional) <* space.many <* lineBreak
 }
 
-func specificAmountDelimiterRow(_ n: Int) -> MDParser<[(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
+private func specificAmountDelimiterRow(_ n: Int) -> MDParser<[(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
     
     let delimiterItem = leftAlignmentData <|> centerAlignmentData <|> rightAlignmentData
     return tableSep.optional *> ( { x in { y in x + [y] }} <^> (delimiterItem <* tableSep).repeat(n - 1)) <*> (delimiterItem <* tableSep.optional) <* space.many <* lineBreak
@@ -112,7 +112,7 @@ private func tableGen(headingRow: [[InlineNode]], fs: [(TableDataNodeGen) -> ([I
     return BlockNode.table(headingRow, tableRowsApply(f: curry(BlockNode.tableData), fs: fs, rows: rows))
 }
 
-let table = tableRow >>- {
+private let table = tableRow >>- {
     row in
     
     return curry(tableGen)(row) <^> specificAmountDelimiterRow(row.count) <*> specificAmountTableRow(row.count).many1
