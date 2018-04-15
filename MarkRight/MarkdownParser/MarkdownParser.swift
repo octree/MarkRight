@@ -56,7 +56,9 @@ struct MarkdownParser {
                     </script>
                 </head>
                 <body>
+                    <div class = "markdown">
                     \(html)
+                    </div>
                 </body>
                 <script>hljs.initHighlightingOnLoad();</script>
             </html>

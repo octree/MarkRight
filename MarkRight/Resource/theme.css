@@ -14,7 +14,14 @@ html, body {
     -webkit-font-smoothing: antialiased
 }
 
-code, pre {
+.markdown {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.markdown code, .markdown pre {
     font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace !important;
     font-size:1em
 }
@@ -23,68 +30,67 @@ code, pre {
     box-sizing: border-box;
 }
 
-html {
+/* html {
     padding: 1em;
-}
+} */
 
 /* highlight: #3FC6B4 */
 /* code backg: #052128 */
 
-h1 {
+.markdown h1 {
     font-size: 1.6em;
 }
 
-h2 {
+.markdown h2 {
     font-size: 1.4em;
 }
 
-h3 {
+.markdown h3 {
     font-size: 1.3em;
 }
 
-h4 {
+.markdown h4 {
     font-size: 1.25em;
 }
 
-h5 {
+.markdown h5 {
     font-size: 1.17em;
 }
 
-h6 {
+.markdown h6 {
     font-size: 1.1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
     color: #fffffa;
 }
 
-hr {
+.markdown hr {
     display: block;
     height: 4px;
-    border: 0;
     border-top: 4px solid #373b4e;
     margin: 1.5em 0;
     padding: 0;
 }
 
-pre, ul, ol, blockquote, p {
+.markdown pre, .markdown ul, .markdown ol, .markdown blockquote, .markdown p {
     
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
-li {
+.markdown li {
     margin-bottom: 0.3em;
 }
 
-pre {
+.markdown pre {
     background-color: #2d3143;
     padding: 10px 18px;
     border-radius: 4px;
     color: #9dbed8;
 }
 
-code {
+.markdown code {
     background-color: #2d3143;
     padding: .2em;
     border-radius: 2px;
@@ -92,45 +98,45 @@ code {
     font-size: .85em;
 }
 
-code:before, code:after {
+.markdown code:before, .markdown code:after {
     letter-spacing: -.2em;
     content: "\00a0";
 }
 
-strong {
+.markdown strong {
     font-weight: bold;
 }
 
-em {
+.markdown em {
     font-weight: normal;
     font-style:italic;
 }
 
 
-ul {
+.markdown ul {
     list-style-position: inside;
 }
 
-ol {
+.markdown ol {
     list-style-position: inside;
 }
 
 
-a {
+.markdown a {
     color: #3eb1d0;
     text-decoration:none;
     text-decoration-color: #3eb1d0;
 }
 
-a:hover {
+.markdown a:hover {
     text-decoration: underline;
 }
 
-div.oct-sub {
+.markdown div.oct-sub {
     margin-left: 1.2em;
 }
 
-blockquote {
+.markdown blockquote {
     margin: 0;
     display: block;
     border-left: solid 4px #373b4e;
@@ -138,7 +144,7 @@ blockquote {
     color: #858585;
 }
 
-table {
+.markdown table {
     display: table;
     width: 100%;
     border-collapse: collapse;
@@ -150,35 +156,35 @@ table {
     border: 1px solid #3b3f54;
 }
 
-thead {
+.markdown thead {
     display: table-header-group;
     vertical-align: middle;
     border-color: inherit;
 }
 
-tbody {
+.markdown tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
 }
 
-th {
+.markdown th {
     font-weight: bold;
     padding: 6px 12px;
     border: 1px solid #3b3f54;
 }
 
-td {
+.markdown td {
     padding: 6px 12px;
     border: 1px solid #3b3f54;
 }
 
-tr {
+.markdown tr {
     background-color: #2d3143;
     color: #b6c2d2;
 }
 
-tr:nth-child(2n) {
+.markdown tr:nth-child(2n) {
     
     background-color: #35394b;
 }
