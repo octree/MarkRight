@@ -9,11 +9,59 @@
 import Cocoa
 import WebKit
 
+private let theme: String = {
+    
+    let path = Bundle.main.path(forResource: "theme", ofType: "css")!
+    return try! String(contentsOfFile: path)
+}()
+
+private func previewHTMLGen(theme: String, scale: CGFloat, content: String) -> String {
+    return """
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <script src="http://obb77efas.bkt.clouddn.com/highlight.pack.js"></script>
+    <style type = "text/css">
+    \(theme)
+    </style>
+    <script>
+    window.oct_scroll = function(r) {
+    let bodyH = document.body.scrollHeight
+    let screenH = screen.height
+    let outH = bodyH - screenH
+    if (outH < 0) {
+    outH = 0
+    }
+    document.body.scrollTop = r * outH
+    }
+    </script>
+    </head>
+    <body>
+        \(content)
+    </body>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>window.oct_scroll(\(scale));</script>
+    </html>
+    """
+}
+
 class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDelegate, NSTextViewDelegate {
     
     var textView: NSTextView {
         
         return scrollView.documentView as! NSTextView
+    }
+    
+    var offsetRatio: CGFloat {
+        
+        let height = scrollView.documentView!.frame.size.height
+        let viewHeight = scrollView.frame.size.height
+        var outH = height - viewHeight
+        
+        if outH < 0 {
+            outH = 0
+        }
+        return scrollView.contentView.bounds.origin.y / outH
     }
     
     var testText: String {
@@ -37,19 +85,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
 
         let text = testText
         textView.string = text
-        if let html = MarkdownParser.toHTML(text) {
+        if let html = MarkdownParser.toHTML(text).map(curry(previewHTMLGen)(theme)(offsetRatio)) {
             self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
             autoScrollWebView()
         }
-        
-//        let bugTest = """
-//        - [ ] asdadadasd
-//        - [ ] asdadadasd
-//
-//        """
-//        let parser = containerBlock
-//
-//        print(parser.parse(Substring(bugTest)))
     }
     
     func configScrollView() {
@@ -60,17 +99,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
     
     @objc func autoScrollWebView() {
         
-        let height = scrollView.documentView!.frame.size.height
-        let viewHeight = scrollView.frame.size.height
-        var outH = height - viewHeight
-        
-        if outH < 0 {
-            outH = 0
-        }
-        let ratio = scrollView.contentView.bounds.origin.y / outH
-        
-        
-        webView.evaluateJavaScript("window.oct_scroll(\(ratio))", completionHandler: nil)
+        webView.evaluateJavaScript("window.oct_scroll(\(offsetRatio))", completionHandler: nil)
     }
     
     func configTextView() {
@@ -90,9 +119,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
     
     func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
         
-        let string = textView.string
+        let text = textView.string
+        let ratio = self.offsetRatio
         DispatchQueue.global(qos: .default).async {
-            if let html = MarkdownParser.toHTML(string) {
+            if let html = MarkdownParser.toHTML(text).map(curry(previewHTMLGen)(theme)(ratio)) {
                 DispatchQueue.main.async {
                     self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
                 }
@@ -117,6 +147,10 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         decisionHandler(.cancel)
     }
     
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        autoScrollWebView()
+    }
+    
     //    MARK: NSTextViewDelegate
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         
@@ -129,7 +163,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        autoScrollWebView()
+//        autoScrollWebView()
     }
 }
 

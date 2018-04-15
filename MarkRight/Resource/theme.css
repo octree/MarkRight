@@ -5,7 +5,7 @@ html, body, * {
     font-smoothing: antialiased;
 }
 html, body {
-    background: #1c1f2b;
+    background-color: #1c1f2b;
     letter-spacing: 0.2px;
     word-wrap: break-word;
     line-height: 1.6;
@@ -19,6 +19,7 @@ html, body {
     max-width: 800px;
     margin: 0 auto;
     padding: 1em;
+    background-color: #1c1f2b;
 }
 
 .markdown code, .markdown pre {
@@ -298,7 +299,7 @@ html, body {
 .hljs {
   display: block;
   overflow-x: auto;
-  background: #2d3143 !important;
+  background-color: #2d3143 !important;
   color: #9dbed8;
   padding: 0.5em;
 }

@@ -17,12 +17,6 @@ import Foundation
 let block = containerBlock <|> leafBlock
 private let markdownParser = { $0 } <^> block.many
 
-private let theme: String = {
-  
-    let path = Bundle.main.path(forResource: "theme", ofType: "css")!
-    return try! String(contentsOfFile: path)
-}()
-
 struct MarkdownParser {
     
     static func parse(_ text: String) -> Reply<Substring, [MarkdownNode]> {
@@ -35,32 +29,9 @@ struct MarkdownParser {
             let html = rt.map { $0.htmlText }.joined(separator: "\n")
             
             return """
-            <html>
-                <head>
-                    <script src="http://obb77efas.bkt.clouddn.com/highlight.pack.js"></script>
-                    <style type = "text/css">
-                    \(theme)
-                    </style>
-                    <script>
-            
-                    window.oct_scroll = function(r) {
-                        let bodyH = document.body.scrollHeight
-                        let screenH = screen.height
-                        let outH = bodyH - screenH
-                        if (outH < 0) {
-                            outH = 0
-                        }
-                        document.body.scrollTop = r * outH
-                    }
-                    </script>
-                </head>
-                <body>
-                    <div class = "markdown">
-                    \(html)
-                    </div>
-                </body>
-                <script>hljs.initHighlightingOnLoad();</script>
-            </html>
+            <div class = "markdown">
+            \(html)
+            </div>
             """
         }
         switch result {
