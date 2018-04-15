@@ -43,7 +43,7 @@
   - [x] Lists
 * Inlines
   - [x] Backslash escapes
-  - [ ] Entity and numeric character references
+  - [x] Entity and numeric character references
   - [x] Code spans
   - [x] Emphasis and strong emphasis
   - [ ] Strikethrough (extension)
