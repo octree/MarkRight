@@ -26,12 +26,13 @@ private func previewHTMLGen(theme: String, scale: CGFloat, content: String) -> S
     </style>
     <script>
     window.oct_scroll = function(r) {
-    let bodyH = document.body.scrollHeight
-    let screenH = screen.height
-    let outH = bodyH - screenH
+    let bodyH = document.body.offsetHeight
+    let clientH = document.body.clientHeight
+    let outH = bodyH - clientH
     if (outH < 0) {
     outH = 0
     }
+    console.log(bodyH, outH, clientH, r)
     document.body.scrollTop = r * outH
     }
     </script>
@@ -40,7 +41,7 @@ private func previewHTMLGen(theme: String, scale: CGFloat, content: String) -> S
         \(content)
     </body>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script>window.oct_scroll(\(scale));</script>
+    <script>window.onload = function() { window.oct_scroll(\(scale));} </script>
     </html>
     """
 }
@@ -87,7 +88,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         textView.string = text
         if let html = MarkdownParser.toHTML(text).map(curry(previewHTMLGen)(theme)(offsetRatio)) {
             self.webView.loadHTMLString(html, baseURL: URL(string: "markright://markdown"))
-            autoScrollWebView()
         }
     }
     
@@ -121,6 +121,7 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         
         let text = textView.string
         let ratio = self.offsetRatio
+    
         DispatchQueue.global(qos: .default).async {
             if let html = MarkdownParser.toHTML(text).map(curry(previewHTMLGen)(theme)(ratio)) {
                 DispatchQueue.main.async {
