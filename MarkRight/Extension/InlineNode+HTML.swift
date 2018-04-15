@@ -35,7 +35,7 @@ extension InlineNode: HTMLConversionProtocol {
             """
         case let .inlineLink(text, url):
             return """
-            <a href = "\(url ?? "")">\(text.htmlEscape())</a>
+            <a href = "\(url ?? "")" target="_blank">\(text.htmlEscape())</a>
             """
         }
     }
