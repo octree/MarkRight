@@ -35,7 +35,7 @@
   - [ ] Link reference definitions
   - [x] Paragraphs
   - [x] Blank lines
-  - [ ] Tables (extension)
+  - [x] Tables (extension)
 * Container blocks
   - [x] Block quotes
   - [x] List items
