@@ -50,7 +50,7 @@ let inlineLink = curry(InlineNode.inlineLink) <^> linkText <*> ( string("(") *> 
 
 /// imageDescription = "![", textualContent, "]";
 
-let imageDescription = string("![") *> stringExcept(["\n", "\r", "]"]) <* string("]")
+let imageDescription = string("![") *> stringExcept(["\n", "\r", "]"]).otherwise("") <* string("]")
 
 /// image = imageDescription, "(", [linkDestination], ")";
 let image =  curry(InlineNode.image) <^> imageDescription <*> (string("(") *> linkDestination.optional <* string(")"))
