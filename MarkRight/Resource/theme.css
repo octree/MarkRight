@@ -1,9 +1,14 @@
 html, body, * {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
     font-smoothing: antialiased;
 }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 html, body {
     background-color: #1c1f2b;
     letter-spacing: 0.2px;
@@ -18,29 +23,23 @@ html, body {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding: 1em;
+    padding: 24px 20px 50px 20px;;
     background-color: #1c1f2b;
 }
 
-.markdown code, .markdown pre {
-    font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace !important;
-    font-size:1em
-}
-
-*, *:before, *:after {
-    box-sizing: border-box;
-}
-
 .markdown h1 {
-    font-size: 1.6em;
+    font-weight: 700;
+    font-size: 2em;
+    margin-top: 0!important
 }
 
 .markdown h2 {
-    font-size: 1.4em;
+    font-size: 1.75em;
+    font-weight: 700;
 }
 
 .markdown h3 {
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 
 .markdown h4 {
@@ -48,30 +47,40 @@ html, body {
 }
 
 .markdown h5 {
-    font-size: 1.17em;
+    font-size: 1em;
 }
 
 .markdown h6 {
-    font-size: 1.1em;
+    font-size: 1em;
+    color: #777;
 }
 
-.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5 {
     color: #fffffa;
+    page-break-after: avoid;
+    margin-top: 1.2em;
+    margin-bottom: .7em;
+    orphans: 3;
+    widows: 3;
+}
+
+.markdown p {
+    orphans: 3;
+    widows: 3;
 }
 
 .markdown hr {
     display: block;
     height: 4px;
     border:none;
-    margin: 1.5em 0;
+    margin: 1.7em 0;
     padding: 0;
     background-color: #373b4e;
 }
 
 .markdown pre, .markdown ul, .markdown ol, .markdown blockquote, .markdown p {
     
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: .85em;
 }
 
 .markdown ul, .markdown ol {
@@ -88,8 +97,6 @@ html, body {
     position: relative;
 }
 
-/* CUSTOM CHECKMARK */
-
 /* The container */
 /* Hide the browser's default checkbox */
 .markdown .task-list-item  input {
@@ -105,7 +112,7 @@ html, body {
     left: -1.6em;
     height: 16px;
     width: 16px;
-    background-color: #424555;
+    background-color: #2d3143;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -131,18 +138,21 @@ html, body {
 
 /* Style the checkmark/indicator */
 .markdown .task-list-item  .checkmark:after {
-    left: 5px;
-    top: 1px;
-    width: 6px;
-    height: 12px;
-    border: solid white;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #9dbed8;
     border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-/* CUSTOM CHECK MARK */
+.markdown code, .markdown pre {
+    font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace !important;
+    font-size:1em
+}
 
 .markdown pre {
     background-color: #2d3143;
@@ -184,11 +194,12 @@ html, body {
 }
 
 .markdown blockquote {
+    position: relative;
     margin: 0;
     display: block;
     border-left: solid 4px #373b4e;
     padding: 2px 15px;
-    color: #858585;
+    color: #959595;
 }
 
 .markdown table {

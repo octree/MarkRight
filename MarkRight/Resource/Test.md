@@ -9,6 +9,7 @@
 - [Task List](#TaskList)
 - [Table](#Table)
 
+
 ## 三件小事
 
 1. 一个，确立了*社会主义市场经济*
@@ -21,11 +22,13 @@
 * 军队一律不得经商
 + 九八年的抗洪也是很重要地
 
+
 ## 人生的经验
 
 > 我今天是作为一个长者给你们讲的。
 > 我不是新闻工作者，但是我见得太多了。
 > 我……我有这个必要好告诉你们一点，人生的经验。
+
 
 ## 没香港记者跑得快的 Swift
 
@@ -41,9 +44,11 @@ let atxHeading1 = BlockNode.h1 <^> (string("#") *> space *> textualContent <* sp
 
 ```
 
+
 ## 并不 Naive 的香港记者
 
 ![真正的粉丝](https://2-im.guokr.com/sFp7eZ-PiCYjlJ7nNtnu7nusCu2psuY_BKrelYER7SL0AQAAAQIAAEdJ.gif)
+
 
 ## 嵌套
 
@@ -78,7 +83,7 @@ let atxHeading1 = BlockNode.h1 <^> (string("#") *> space *> textualContent <* sp
 ------
 
 | Programming Language        | Ratings           | Change  |
-| ------------- |:-------------:| -----:|
+| -------------- |:-------------:| -----:|
 | Swift    |  1.534 % | 1.34% |
 | Kotlin      |  0.32%   |  1.45% |
 | Scala | 2.1234%      |  0.233333%  |

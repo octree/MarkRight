@@ -65,8 +65,9 @@ extension BlockNode: HTMLConversionProtocol {
             return """
             <hr/>
             """
-        case let .blankLines(n):
-            return [String](repeating: "<br/>", count: n).joined()
+        case .blankLines(_):
+            return """
+            """
         case let .paragraph(lines):
             return """
             <p>
