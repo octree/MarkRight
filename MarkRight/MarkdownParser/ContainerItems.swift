@@ -24,6 +24,7 @@ let taskListMarker = taskListUncheckMarker <|> taskListCheckedMarker
 
 
 /// bulletListMarker = "-";    (*plus and star ignored for now*)
+
 let bulletListMarker = character { "+-*".contains($0) }.difference(taskListMarker)
 func depthBulletListMarker(depth: Int) -> MDParser<Character> {
     
