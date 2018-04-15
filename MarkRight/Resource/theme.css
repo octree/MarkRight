@@ -14,7 +14,7 @@ html, body {
     -webkit-font-smoothing: antialiased
 }
 
-code, pre{
+code, pre {
     font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace !important;
     font-size:1em
 }
@@ -86,9 +86,15 @@ pre {
 
 code {
     background-color: #2d3143;
-    padding: 2px 4px;
+    padding: .2em;
     border-radius: 2px;
     color: #9dbed8;
+    font-size: .85em;
+}
+
+code:before, code:after {
+    letter-spacing: -.2em;
+    content: "\00a0";
 }
 
 strong {
@@ -128,8 +134,8 @@ blockquote {
     margin: 0;
     display: block;
     border-left: solid 4px #373b4e;
-    padding: 8px 10px;
-    color: #9EBFDB;
+    padding: 2px 15px;
+    color: #858585;
 }
 
 table {
