@@ -34,8 +34,9 @@ extension TableDataAlignment: HTMLConversionProtocol {
 
 private func headerHTMLString(text: String, level: Int) -> String {
     
+    let id = String(text.filter { !NSCharacterSet.whitespaces.contains($0) && $0 != "\"" })
     return """
-    <h\(level)>\(text)</h\(level)>
+    <h\(level) id="\(id)">\(text)</h\(level)>
     """
 }
 
@@ -58,7 +59,7 @@ extension BlockNode: HTMLConversionProtocol {
         case let .fencedCodeBlock(info, lines):
             let code = (lines ?? []).map{ $0.htmlEscape() }.joined(separator: "\n")
             return """
-            <pre><code class="\(info ?? "")">\(code)</code></pre>
+            <pre><code class="\(info?.htmlEscape() ?? "")">\(code)</code></pre>
             """
         case .thematicBreak:
             return """

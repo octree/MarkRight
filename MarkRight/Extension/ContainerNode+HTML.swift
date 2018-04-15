@@ -13,7 +13,7 @@ extension ContainerNode: HTMLConversionProtocol {
     
     var htmlText: String {
         switch self {
-            
+        
         case let .inlineLines(lines):
             return """
             <p>\(lines.htmlText)</p>
@@ -30,7 +30,7 @@ extension ContainerNode: HTMLConversionProtocol {
             """
         case let .orderedList(item):
             return """
-            <ol type = "1">
+            <ol>
                 \(item.htmlText)
             </ol>
             """
@@ -48,8 +48,9 @@ extension ContainerNode: HTMLConversionProtocol {
             """
         case let .listItemFencedCodeBlock(info, lines):
             let code = (lines ?? []).map { $0.htmlEscape() }.joined(separator: "\n")
+            
             return """
-            <pre><code class="\(info ?? "")">\(code)</code></pre>
+            <pre><code class="\(info?.htmlEscape() ?? "")">\(code)</code></pre>
             """
         case let .taskListItem(checked, node):
             

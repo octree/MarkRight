@@ -18,7 +18,7 @@ extension InlineNode: HTMLConversionProtocol {
             return text.htmlEscape()
         case let .image(desc, url):
             return """
-            <img src = "\(url ?? "")" alt = "\(desc)" />
+            <img src = "\(url?.htmlEscape() ?? "")" alt = "\(desc.htmlEscape())" />
             """
         case let .codeSpan(text):
             
@@ -34,8 +34,9 @@ extension InlineNode: HTMLConversionProtocol {
             <strong>\(text.htmlEscape())</strong>
             """
         case let .inlineLink(text, url):
+            
             return """
-            <a href = "\(url ?? "")" target="_blank">\(text.htmlEscape())</a>
+            <a href = "\(url?.htmlEscape() ?? "")">\(text.htmlEscape())</a>
             """
         }
     }
