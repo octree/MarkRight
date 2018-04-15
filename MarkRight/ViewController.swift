@@ -147,10 +147,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         decisionHandler(.cancel)
     }
     
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        autoScrollWebView()
-    }
-    
     //    MARK: NSTextViewDelegate
     func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         
@@ -160,10 +156,6 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
             return true
         }
         return false
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        autoScrollWebView()
     }
 }
 
