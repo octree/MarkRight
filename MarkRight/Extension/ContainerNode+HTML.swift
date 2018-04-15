@@ -38,9 +38,7 @@ extension ContainerNode: HTMLConversionProtocol {
             
             let son = nodes.map {
                 return """
-                <div class = "oct-sub">
                 \($0.htmlText)
-                </div>
                 """
             }
             
@@ -53,6 +51,31 @@ extension ContainerNode: HTMLConversionProtocol {
             return """
             <pre><code class="\(info ?? "")">\(code)</code></pre>
             """
+        case let .taskListItem(checked, node):
+            
+            guard case let .listItemParagraph(main, sons) = node else {
+                return ""
+            }
+            let son = sons.map {
+                return """
+                \($0.htmlText)
+                """
+            }
+            return """
+            <li class = "task-list-item">
+            <input type="checkbox" disabled class="task-list-item-checkbox" \(checked ? "checked" : "")>
+            <span class="checkmark"></span>
+            \(main.htmlText)
+            </li>
+             \(son ?? "")
+            """
+        case let .taskList(nodes):
+            return """
+            <ul class = "task-list-container">
+                \(nodes.htmlText)
+            </ul>
+            """
         }
+        
     }
 }

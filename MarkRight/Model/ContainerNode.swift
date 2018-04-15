@@ -17,9 +17,11 @@ indirect enum ContainerNode {
     case inlineLines([InlineLine])
     case listItemParagraph(main: InlineLine, sub: [ContainerNode]?)
     case listItemFencedCodeBlock(info: String?, lines: [String]?)
+    case taskListItem(Bool, ContainerNode)
     case blockQuote([InlineLine])
     //    [bulletListItem]
     case bulletList([ContainerNode])
     //    [orderedListItem]
     case orderedList([ContainerNode])
+    case taskList([ContainerNode])
 }

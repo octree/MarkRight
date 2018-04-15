@@ -43,13 +43,12 @@ class ViewController: NSViewController, NSTextStorageDelegate, WKNavigationDeleg
         }
         
 //        let bugTest = """
-//        | hello | word |
-//        |:-----:|:----:|
-//        | hello | word |
+//        - [ ] asdadadasd
+//        - [ ] asdadadasd
 //
 //        """
-//        let parser = table
-//        
+//        let parser = containerBlock
+//
 //        print(parser.parse(Substring(bugTest)))
     }
     

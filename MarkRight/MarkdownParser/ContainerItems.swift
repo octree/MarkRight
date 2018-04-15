@@ -18,8 +18,13 @@ let blockQuoteMarker = string(">") <* string(" ").optional
 //  blockQuote = blockQuteMarker, inlineLine, {blockQuteMarker, inlineLine};   (*2. Laziness is ignored for now*)
 let blockQuote = ContainerNode.blockQuote <^> (blockQuoteMarker *> inlineLine).many1
 
+let taskListUncheckMarker = { _ in curry(ContainerNode.taskListItem)(false) } <^> string("- [ ] ")
+let taskListCheckedMarker = { _ in curry(ContainerNode.taskListItem)(true) } <^> string("- [x] ")
+let taskListMarker = taskListUncheckMarker <|> taskListCheckedMarker
+
+
 /// bulletListMarker = "-";    (*plus and star ignored for now*)
-let bulletListMarker = character { "+-*".contains($0) }
+let bulletListMarker = character { "+-*".contains($0) }.difference(taskListMarker)
 func depthBulletListMarker(depth: Int) -> MDParser<Character> {
     
     let indentation = space.repeat(4 * depth - 4)
@@ -35,10 +40,11 @@ func depthOrderedListMarker(depth: Int) -> MDParser<[Character]> {
     return indentation *> orderedListMarker
 }
 
-/// listMarker = bulletListMarker | orderedListMarker;
-//let listMarker = bulletListMarker <|> orderedListMarker
+func depthTaskListItem(depth: Int) -> MDParser<ContainerNode> {
+    let indentation = listItemIndentation.repeat(depth - 1)
+    return (indentation *> taskListMarker) <*> listItemParagraph(depth: depth)
+}
 
-/// bulletListItem = bulletListMarker, 3 * space, listItemLeafBlock;
 func depthBulletListItem(depth: Int) -> MDParser<ContainerNode> {
     
     let indentation = listItemIndentation.repeat(depth - 1)
@@ -64,5 +70,10 @@ func depthBulletList(depth: Int) -> MDParser<ContainerNode> {
     return ContainerNode.bulletList <^> (depthBulletListItem(depth: depth) <* blankLine.optional).many1
 }
 
+func depthTaskList(depth: Int) -> MDParser<ContainerNode> {
+    
+    return ContainerNode.taskList <^> (depthTaskListItem(depth: depth) <* blankLine.optional).many1
+}
+
 //containerBlock = blockQuote;
-let containerBlock =  MarkdownNode.container <^> (blockQuote <|> depthOrderedList(depth: 1) <|> depthBulletList(depth: 1))
+let containerBlock =  MarkdownNode.container <^> (blockQuote <|> depthOrderedList(depth: 1) <|> depthBulletList(depth: 1) <|> depthTaskList(depth: 1))

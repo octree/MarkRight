@@ -21,6 +21,7 @@ extension InlineNode: HTMLConversionProtocol {
             <img src = "\(url ?? "")" alt = "\(desc)" />
             """
         case let .codeSpan(text):
+            
             return """
             <code>\(text.htmlEscape())</code>
             """

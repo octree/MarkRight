@@ -39,7 +39,7 @@
 * Container blocks
   - [x] Block quotes
   - [x] List items
-  - [ ] Task list items (extension)
+  - [x] Task list items (extension)
   - [x] Lists
 * Inlines
   - [x] Backslash escapes

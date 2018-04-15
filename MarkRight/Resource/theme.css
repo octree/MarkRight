@@ -61,9 +61,10 @@ html, body {
 .markdown hr {
     display: block;
     height: 4px;
-    border-top: 4px solid #373b4e;
+    border:none;
     margin: 1.5em 0;
     padding: 0;
+    background-color: #373b4e;
 }
 
 .markdown pre, .markdown ul, .markdown ol, .markdown blockquote, .markdown p {
@@ -72,9 +73,75 @@ html, body {
     margin-bottom: 0.5em;
 }
 
-.markdown li {
-    margin-bottom: 0.3em;
+.markdown ul, .markdown ol {
+    padding-left: 2em;
 }
+
+.markdown li {
+    margin-bottom: 4px;
+}
+
+.markdown .task-list-item {
+    list-style-type: none;
+    display: block;
+    position: relative;
+}
+
+/* CUSTOM CHECKMARK */
+
+/* The container */
+/* Hide the browser's default checkbox */
+.markdown .task-list-item  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.markdown .task-list-item .checkmark {
+    position: absolute;
+    top: 5px;
+    left: -1.6em;
+    height: 16px;
+    width: 16px;
+    background-color: #424555;
+}
+
+/* When the checkbox is checked, add a blue background */
+.markdown .task-list-item input:checked ~ .checkmark {
+    border-radius: 3px;
+}
+
+.markdown .task-list-item input ~ .checkmark {
+    border-radius: 3px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.markdown .task-list-item .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.markdown .task-list-item  input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.markdown .task-list-item  .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* CUSTOM CHECK MARK */
 
 .markdown pre {
     background-color: #2d3143;
@@ -105,16 +172,6 @@ html, body {
     font-style:italic;
 }
 
-
-.markdown ul {
-    list-style-position: inside;
-}
-
-.markdown ol {
-    list-style-position: inside;
-}
-
-
 .markdown a {
     color: #3eb1d0;
     text-decoration:none;
@@ -123,10 +180,6 @@ html, body {
 
 .markdown a:hover {
     text-decoration: underline;
-}
-
-.markdown div.oct-sub {
-    margin-left: 1.2em;
 }
 
 .markdown blockquote {

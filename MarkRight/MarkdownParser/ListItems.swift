@@ -21,12 +21,12 @@ func listItemParagraph(depth: Int) -> MDParser<ContainerNode> {
     
     let indentation = listItemIndentation.repeat(depth)
     
-    let lines =  ContainerNode.inlineLines <^> (indentation *> inlineLine).many1
     let transformer: (InlineLine) -> MDParser<ContainerNode> = {
         inline in
         
-        let special = listItemFencedCodeBlock(depth: depth) <|> depthOrderedList(depth: depth + 1) <|> depthBulletList(depth: depth + 1)
-        let elt = blankLine.optional *> (special <|> lines.difference(special))
+        let special = listItemFencedCodeBlock(depth: depth) <|> depthOrderedList(depth: depth + 1) <|> depthBulletList(depth: depth + 1) <|> depthTaskList(depth: depth + 1)
+        let lines =  ContainerNode.inlineLines <^> (indentation *> inlineLine).difference(special).many1
+        let elt = blankLine.optional *> (special <|> lines)
         return curry(ContainerNode.listItemParagraph)(inline) <^> elt.many1.optional
     }
     

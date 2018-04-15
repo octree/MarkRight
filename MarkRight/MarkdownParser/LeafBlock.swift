@@ -123,7 +123,7 @@ private let table = tableRow >>- {
 
 /// paragraph = inlineLine, {inlineLine};
 private let specialLeaf = table <|> thematicBreak <|> atxHeading <|> indentedCodeBlock <|> fencedCodeBlock <|> blankLines
-let paragraph = BlockNode.paragraph <^> inlineLine.difference(specialLeaf).many1
+let paragraph = BlockNode.paragraph <^> inlineLine.difference(specialLeaf).difference(containerBlock).many1
 
 // leafBlock = thematicBreak | atxHeading | indentedCodeBlock | fencedCodeBlock | linkReferenceDefinition | paragraph | blankLines;
 
