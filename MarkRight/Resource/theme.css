@@ -27,6 +27,10 @@ html, body {
     background-color: #1c1f2b;
 }
 
+.markdown img {
+    max-width: 100%;
+}
+
 .markdown h1 {
     font-weight: 700;
     font-size: 2em;
