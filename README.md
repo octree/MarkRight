@@ -16,7 +16,7 @@
 
 ![Demo](./Shots/demo2.png)
 
-## TODO
+## Supported grammars
 
 * Preliminaries
   - [x] Characters and lines
