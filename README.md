@@ -2,7 +2,7 @@
 
 
 
-一个简单的 Markdown Parser，100% 使用 Swift 实现。Parser 使由 [ParserCombinator](https://github.com/octree/ParserCombinator) 强力驱动
+A simple Markdown Parser written in `swift`, Powered by [ParserCombinator](https://github.com/octree/ParserCombinator)
 
 
 
