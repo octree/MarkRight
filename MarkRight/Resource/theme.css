@@ -82,7 +82,7 @@ html, body {
     background-color: #373b4e;
 }
 
-.markdown pre, .markdown ul, .markdown ol, .markdown blockquote, .markdown p {
+.markdown pre, .markdown ul, .markdown ol, .markdown blockquote, .markdown p, .markdown table {
     
     margin-bottom: .85em;
 }
@@ -199,7 +199,6 @@ html, body {
 
 .markdown blockquote {
     position: relative;
-    margin: 0;
     display: block;
     border-left: solid 4px #373b4e;
     padding: 2px 15px;
