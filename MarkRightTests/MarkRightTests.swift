@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import MarkRight
 
 class MarkRightTests: XCTestCase {
     

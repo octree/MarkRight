@@ -13,7 +13,7 @@ import Foundation
  **********  Generic String Terms  ***********
  ********************************************/
 
-typealias MDParser<T> = Parser<Substring, T>
+public typealias MDParser<T> = Parser<Substring, T>
 
 func not<T>(_ parser: MDParser<T>) -> MDParser<Substring> {
     

@@ -1,6 +1,6 @@
 //
 //  LeafBlock.swift
-//  SwiftCMD
+//  MarkRight
 //
 //  Created by Octree on 2018/4/11.
 //  Copyright © 2018年 Octree. All rights reserved.
@@ -89,8 +89,8 @@ private func specificAmountTableRow(_ n: Int) -> MDParser<[[InlineNode]]> {
     return tableSep *> (tableData <* tableSep).repeat(n) <* space.many <* lineBreak
 }
 
-private func specificAmountDelimiterRow(_ n: Int) -> MDParser<[(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
-    
+private func specificAmountDelimiterRow(_ n: Int) -> Parser<Substring, [(TableDataNodeGen) -> ([InlineNode]) -> BlockNode]> {
+
     let delimiterItem = leftAlignmentData <|> centerAlignmentData <|> rightAlignmentData
     return tableSep *> (delimiterItem <* tableSep).repeat(n) <* space.many <* lineBreak
 }
