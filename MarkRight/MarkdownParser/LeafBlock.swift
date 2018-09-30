@@ -76,11 +76,20 @@ private let tableData = space.many *> (not(tableSep <|> lineEnding) >>- {
 
 private let colon = character { $0 == ":" }
 private typealias TableDataNodeGen = (TableDataAlignment) -> ([InlineNode]) -> BlockNode
-private let centerAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.center) }) <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
 
-private let leftAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.left) }) <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> tableSep.lookAhead)
+private func alignmentApply(_ any: Any, align: TableDataAlignment) -> (TableDataNodeGen) -> ([InlineNode]) -> BlockNode {
+    
+    return {
+        f in
+        return f(align)
+    }
+}
 
-private let rightAlignmentData = curry({ (_,f: TableDataNodeGen) in f(.right) }) <^> (space.many *> hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
+private let centerAlignmentData = { alignmentApply($0, align: .center ) } <^> (space.many *> colon *>  hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
+
+private let leftAlignmentData = { alignmentApply($0, align: .left ) } <^> (space.many *> colon.optional *> hyphen.many1 *> space.many *> tableSep.lookAhead)
+
+private let rightAlignmentData = { alignmentApply($0, align: .right ) } <^> (space.many *> hyphen.many1 *> colon *> space.many *> tableSep.lookAhead)
 
 private let tableRow = tableSep *> (curry({ x, y in [x] + y}) <^> (tableData <* tableSep)  <*> (tableData <* tableSep).many1) <* space.many <* lineBreak
 
