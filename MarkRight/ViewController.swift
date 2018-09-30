@@ -8,6 +8,7 @@
 
 import Cocoa
 import WebKit
+import FP
 
 private let theme: String = {
     

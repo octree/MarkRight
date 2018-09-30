@@ -17,15 +17,9 @@
 		C27C6EDE207EE2E100178A1F /* ContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C6EDD207EE2E100178A1F /* ContainerNode.swift */; };
 		C27C6EE0207EF17D00178A1F /* theme.css in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EDF207EF17D00178A1F /* theme.css */; };
 		C27C6EE3207EF41000178A1F /* css_injector.js in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EE2207EF41000178A1F /* css_injector.js */; };
-		C28245CB2081E6D1001E0561 /* Runes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C32081E6D0001E0561 /* Runes.swift */; };
-		C28245CC2081E6D1001E0561 /* ParserRunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C42081E6D0001E0561 /* ParserRunes.swift */; };
-		C28245CD2081E6D1001E0561 /* SubstringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C52081E6D0001E0561 /* SubstringParser.swift */; };
-		C28245CE2081E6D1001E0561 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C62081E6D0001E0561 /* Parser.swift */; };
-		C28245CF2081E6D1001E0561 /* ParserCombinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C72081E6D0001E0561 /* ParserCombinator.swift */; };
-		C28245D02081E6D1001E0561 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C82081E6D0001E0561 /* ParserError.swift */; };
-		C28245D12081E6D1001E0561 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245C92081E6D0001E0561 /* Reply.swift */; };
-		C28245D22081E6D1001E0561 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28245CA2081E6D1001E0561 /* Curry.swift */; };
 		C28245D420826EBE001E0561 /* theme-solarized-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = C28245D320826EBE001E0561 /* theme-solarized-dark.css */; };
+		C2A3E74E216070E9002DC267 /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3E74C216070E9002DC267 /* FP.framework */; };
+		C2A3E74F216070E9002DC267 /* ParserCombinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3E74D216070E9002DC267 /* ParserCombinator.framework */; };
 		C2B081D4207E7855005C47F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D3207E7855005C47F4 /* AppDelegate.swift */; };
 		C2B081D6207E7855005C47F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081D5207E7855005C47F4 /* ViewController.swift */; };
 		C2B081D8207E7856005C47F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B081D7207E7856005C47F4 /* Assets.xcassets */; };
@@ -68,15 +62,9 @@
 		C27C6EDD207EE2E100178A1F /* ContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNode.swift; sourceTree = "<group>"; };
 		C27C6EDF207EF17D00178A1F /* theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = theme.css; sourceTree = "<group>"; };
 		C27C6EE2207EF41000178A1F /* css_injector.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = css_injector.js; sourceTree = "<group>"; };
-		C28245C32081E6D0001E0561 /* Runes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runes.swift; sourceTree = "<group>"; };
-		C28245C42081E6D0001E0561 /* ParserRunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserRunes.swift; sourceTree = "<group>"; };
-		C28245C52081E6D0001E0561 /* SubstringParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubstringParser.swift; sourceTree = "<group>"; };
-		C28245C62081E6D0001E0561 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		C28245C72081E6D0001E0561 /* ParserCombinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserCombinator.swift; sourceTree = "<group>"; };
-		C28245C82081E6D0001E0561 /* ParserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
-		C28245C92081E6D0001E0561 /* Reply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
-		C28245CA2081E6D1001E0561 /* Curry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
 		C28245D320826EBE001E0561 /* theme-solarized-dark.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "theme-solarized-dark.css"; sourceTree = "<group>"; };
+		C2A3E74C216070E9002DC267 /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FP.framework; path = Carthage/Build/Mac/FP.framework; sourceTree = "<group>"; };
+		C2A3E74D216070E9002DC267 /* ParserCombinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParserCombinator.framework; path = Carthage/Build/Mac/ParserCombinator.framework; sourceTree = "<group>"; };
 		C2B081D0207E7855005C47F4 /* MarkRight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkRight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B081D3207E7855005C47F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2B081D5207E7855005C47F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2A3E74E216070E9002DC267 /* FP.framework in Frameworks */,
+				C2A3E74F216070E9002DC267 /* ParserCombinator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,12 +122,22 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		C2A3E74B216070E9002DC267 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2A3E74C216070E9002DC267 /* FP.framework */,
+				C2A3E74D216070E9002DC267 /* ParserCombinator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C2B081C7207E7855005C47F4 = {
 			isa = PBXGroup;
 			children = (
 				C2B081D2207E7855005C47F4 /* MarkRight */,
 				C2B081E5207E7857005C47F4 /* MarkRightTests */,
 				C2B081D1207E7855005C47F4 /* Products */,
+				C2A3E74B216070E9002DC267 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,14 +227,6 @@
 		C2B081FF207E786C005C47F4 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				C28245CA2081E6D1001E0561 /* Curry.swift */,
-				C28245C62081E6D0001E0561 /* Parser.swift */,
-				C28245C72081E6D0001E0561 /* ParserCombinator.swift */,
-				C28245C82081E6D0001E0561 /* ParserError.swift */,
-				C28245C42081E6D0001E0561 /* ParserRunes.swift */,
-				C28245C92081E6D0001E0561 /* Reply.swift */,
-				C28245C32081E6D0001E0561 /* Runes.swift */,
-				C28245C52081E6D0001E0561 /* SubstringParser.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -260,6 +252,7 @@
 				C2B081CC207E7855005C47F4 /* Sources */,
 				C2B081CD207E7855005C47F4 /* Frameworks */,
 				C2B081CE207E7855005C47F4 /* Resources */,
+				C2A3E75121607454002DC267 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -303,6 +296,7 @@
 					};
 					C2B081E1207E7857005C47F4 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = C2B081CF207E7855005C47F4;
 					};
 				};
@@ -349,19 +343,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C2A3E75121607454002DC267 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/FP.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/ParserCombinator.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C2B081CC207E7855005C47F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C28245CF2081E6D1001E0561 /* ParserCombinator.swift in Sources */,
 				080D3448207F00F1002E28E4 /* BlockNode+HTML.swift in Sources */,
-				C28245CC2081E6D1001E0561 /* ParserRunes.swift in Sources */,
 				C2B0820A207E786C005C47F4 /* Inlines.swift in Sources */,
 				C2D094FF207F8CB0002B033F /* Utilities.swift in Sources */,
-				C28245CB2081E6D1001E0561 /* Runes.swift in Sources */,
-				C28245D12081E6D1001E0561 /* Reply.swift in Sources */,
-				C28245D22081E6D1001E0561 /* Curry.swift in Sources */,
 				C27C6ED8207EE00000178A1F /* InlineNode.swift in Sources */,
 				C2B08206207E786C005C47F4 /* ContainerItems.swift in Sources */,
 				C2B0820E207E786C005C47F4 /* MarkdownNode+HTML.swift in Sources */,
@@ -380,10 +391,7 @@
 				C27C6EDE207EE2E100178A1F /* ContainerNode.swift in Sources */,
 				C2B08208207E786C005C47F4 /* ListItems.swift in Sources */,
 				C2D09501207F8CB0002B033F /* String+HTMLEntities.swift in Sources */,
-				C28245CE2081E6D1001E0561 /* Parser.swift in Sources */,
 				C2B08209207E786C005C47F4 /* MarkdownParser.swift in Sources */,
-				C28245CD2081E6D1001E0561 /* SubstringParser.swift in Sources */,
-				C28245D02081E6D1001E0561 /* ParserError.swift in Sources */,
 				C2D094FE207F8CB0002B033F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,6 +546,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7A5GV3DH33;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = MarkRight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -556,6 +568,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 7A5GV3DH33;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = MarkRight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,7 +599,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.MarkRightTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkRight.app/Contents/MacOS/MarkRight";
 			};
 			name = Debug;
@@ -604,7 +620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.octree.MarkRightTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MarkRight.app/Contents/MacOS/MarkRight";
 			};
 			name = Release;
