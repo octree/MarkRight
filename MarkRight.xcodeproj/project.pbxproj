@@ -15,7 +15,7 @@
 		C27C6ED8207EE00000178A1F /* InlineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C6ED7207EE00000178A1F /* InlineNode.swift */; };
 		C27C6EDA207EE08C00178A1F /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C6ED9207EE08C00178A1F /* BlockNode.swift */; };
 		C27C6EDE207EE2E100178A1F /* ContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C6EDD207EE2E100178A1F /* ContainerNode.swift */; };
-		C27C6EE0207EF17D00178A1F /* theme.css in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EDF207EF17D00178A1F /* theme.css */; };
+		C27C6EE0207EF17D00178A1F /* theme-light.css in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EDF207EF17D00178A1F /* theme-light.css */; };
 		C27C6EE3207EF41000178A1F /* css_injector.js in Resources */ = {isa = PBXBuildFile; fileRef = C27C6EE2207EF41000178A1F /* css_injector.js */; };
 		C28245D420826EBE001E0561 /* theme-solarized-dark.css in Resources */ = {isa = PBXBuildFile; fileRef = C28245D320826EBE001E0561 /* theme-solarized-dark.css */; };
 		C2A3E74E216070E9002DC267 /* FP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A3E74C216070E9002DC267 /* FP.framework */; };
@@ -35,6 +35,8 @@
 		C2B0820D207E786C005C47F4 /* MarkdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FB207E786C005C47F4 /* MarkdownNode.swift */; };
 		C2B0820E207E786C005C47F4 /* MarkdownNode+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FD207E786C005C47F4 /* MarkdownNode+HTML.swift */; };
 		C2B0820F207E786C005C47F4 /* CharacterSet+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B081FE207E786C005C47F4 /* CharacterSet+Extension.swift */; };
+		C2CB174D22C61D8300F6D086 /* theme.css in Resources */ = {isa = PBXBuildFile; fileRef = C2CB174C22C61D8300F6D086 /* theme.css */; };
+		C2CB174F22C61F9100F6D086 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = C2CB174E22C61F9100F6D086 /* highlight.js */; };
 		C2D094FE207F8CB0002B033F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FA207F8CAF002B033F /* Constants.swift */; };
 		C2D094FF207F8CB0002B033F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FB207F8CAF002B033F /* Utilities.swift */; };
 		C2D09500207F8CB0002B033F /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D094FC207F8CAF002B033F /* ParseError.swift */; };
@@ -60,7 +62,7 @@
 		C27C6ED7207EE00000178A1F /* InlineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineNode.swift; sourceTree = "<group>"; };
 		C27C6ED9207EE08C00178A1F /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		C27C6EDD207EE2E100178A1F /* ContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNode.swift; sourceTree = "<group>"; };
-		C27C6EDF207EF17D00178A1F /* theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = theme.css; sourceTree = "<group>"; };
+		C27C6EDF207EF17D00178A1F /* theme-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "theme-light.css"; sourceTree = "<group>"; };
 		C27C6EE2207EF41000178A1F /* css_injector.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = css_injector.js; sourceTree = "<group>"; };
 		C28245D320826EBE001E0561 /* theme-solarized-dark.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "theme-solarized-dark.css"; sourceTree = "<group>"; };
 		C2A3E74C216070E9002DC267 /* FP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FP.framework; path = Carthage/Build/Mac/FP.framework; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 		C2B081FB207E786C005C47F4 /* MarkdownNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
 		C2B081FD207E786C005C47F4 /* MarkdownNode+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MarkdownNode+HTML.swift"; sourceTree = "<group>"; };
 		C2B081FE207E786C005C47F4 /* CharacterSet+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CharacterSet+Extension.swift"; sourceTree = "<group>"; };
+		C2CB174C22C61D8300F6D086 /* theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = theme.css; sourceTree = "<group>"; };
+		C2CB174E22C61F9100F6D086 /* highlight.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highlight.js; sourceTree = "<group>"; };
 		C2D094FA207F8CAF002B033F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C2D094FB207F8CAF002B033F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C2D094FC207F8CAF002B033F /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
@@ -114,10 +118,12 @@
 		C27C6EE1207EF36800178A1F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C27C6EDF207EF17D00178A1F /* theme.css */,
+				C2CB174E22C61F9100F6D086 /* highlight.js */,
+				C27C6EDF207EF17D00178A1F /* theme-light.css */,
 				C27C6EE2207EF41000178A1F /* css_injector.js */,
 				0821E721207F610B00E06A9D /* Test.md */,
 				C28245D320826EBE001E0561 /* theme-solarized-dark.css */,
+				C2CB174C22C61D8300F6D086 /* theme.css */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -326,11 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27C6EE3207EF41000178A1F /* css_injector.js in Resources */,
+				C2CB174F22C61F9100F6D086 /* highlight.js in Resources */,
 				C2B081D8207E7856005C47F4 /* Assets.xcassets in Resources */,
 				0821E722207F610B00E06A9D /* Test.md in Resources */,
 				C28245D420826EBE001E0561 /* theme-solarized-dark.css in Resources */,
+				C2CB174D22C61D8300F6D086 /* theme.css in Resources */,
 				C2B081DB207E7856005C47F4 /* Main.storyboard in Resources */,
-				C27C6EE0207EF17D00178A1F /* theme.css in Resources */,
+				C27C6EE0207EF17D00178A1F /* theme-light.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

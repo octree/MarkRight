@@ -16,12 +16,20 @@ private let theme: String = {
     return try! String(contentsOfFile: path)
 }()
 
+private let hjs: String = {
+    let path = Bundle.main.path(forResource: "highlight", ofType: "js")!
+    return try! String(contentsOfFile: path)
+}()
+
 private func previewHTMLGen(theme: String, scale: CGFloat, content: String) -> String {
     return """
     <html>
     <head>
     <meta charset="UTF-8">
-    <script src="http://obb77efas.bkt.clouddn.com/highlight.pack.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script>
+    \(hjs)
+    </script>
     <style type = "text/css">
     \(theme)
     </style>
